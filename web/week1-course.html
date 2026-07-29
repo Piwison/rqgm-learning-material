@@ -251,7 +251,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   <div class="rail-head">
     <p class="kicker">Week 1 · Course</p>
     <h1>AI Agent<br>評估的地基</h1>
-    <p class="sub">6 課 + 週末總結 · 約 15 小時</p>
+    <p class="sub">6 課 15 小時 + 週末總結 40 分</p>
   </div>
   <div class="jump">
     <button onclick="document.getElementById('s-gloss').scrollIntoView()">術語表</button>
@@ -390,7 +390,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
 <section id="s-l1" data-h="0.5">
   <p class="eyebrow">Lesson 1</p>
   <h2>評估的兩種看法</h2>
-  <p class="meta">2 小時 · 概念 + 動手</p>
+  <p class="meta">1 小時 · 概念 + 動手</p>
 
   <p class="lede">看結果，還是看過程？這是評估設計裡第一個、也是最常被搞混的分岔。</p>
 
@@ -503,10 +503,10 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
 
 <hr>
 
-<section id="s-l2" data-h="2.5">
+<section id="s-l2" data-h="1.5">
   <p class="eyebrow">Lesson 2</p>
   <h2>LLM 當裁判：它會怎麼騙你</h2>
-  <p class="meta">2 小時 · 概念 + 自我測驗</p>
+  <p class="meta">1.5 小時 · 概念 + 自我測驗</p>
 
   <p class="lede">你不可能每次都親自看 200 份報告。所以做法是：寫一份<span class="gl" title="一張檢查清單，列出什麼才算做對">rubric（評分準則）</span>，讓另一個 LLM 照著它幫你打分。這叫 LLM-as-a-Judge。</p>
 
@@ -515,7 +515,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
     <p style="margin-bottom:0">就是一張<strong>檢查清單</strong>，列出「什麼才算做對」。跟你 spec 裡的驗收條件是同一種東西 —— 只是寫成讓機器也能照著跑的形式。Lesson 3 會完整處理怎麼寫，這一課你只要知道「裁判是照著一張清單在打分」就夠。</p>
   </div>
 
-  <p>好消息是它真的有用。2023 年的一項經典研究（Zheng et al., MT-Bench）發現，強模型當裁判時，與人類判斷的一致率超過 80% —— 這個數字大約等同於<strong>兩個人類之間</strong>的一致率。換句話說：一個好的 LLM 裁判，跟你找另一個同事來審，準確度差不多。</p>
+  <p>好消息是它真的有用。2023 年的一項經典研究發現（Zheng et al.，提出了 <span class="gl" title="一個讓人類和 GPT-4 同時評分模型回答、再比對兩者是否一致的基準測試">MT-Bench</span>），強模型當裁判時，與人類判斷的一致率超過 80% —— 這個數字大約等同於<strong>兩個人類之間</strong>的一致率。換句話說：一個好的 LLM 裁判，跟你找另一個同事來審，準確度差不多。</p>
   <p>壞消息是它有四種<em>系統性</em>偏誤。不是偶爾出錯，是穩定地往同一個方向歪。</p>
 
   <h3>四種偏誤</h3>
@@ -613,7 +613,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
 
 <hr>
 
-<section id="s-l3" data-h="4.5">
+<section id="s-l3" data-h="3">
   <p class="eyebrow">Lesson 3</p>
   <h2>從 spec 到 rubric：你早就會了</h2>
   <p class="meta">1.5 小時 · 動手為主</p>
@@ -736,12 +736,18 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
 
 <hr>
 
-<section id="s-l4" data-h="6">
+<section id="s-l4" data-h="4.5">
   <p class="eyebrow">Lesson 4</p>
   <h2>論文閱讀協議</h2>
   <p class="meta">1.5 小時 · 現在才能打開論文</p>
 
   <p class="lede"><strong>現在，而且只有現在，你可以打開那篇論文了。</strong><br><a href="https://arxiv.org/abs/2606.26294" target="_blank" rel="noreferrer">arxiv.org/abs/2606.26294</a></p>
+
+  <div class="box a">
+    <p class="bl">連結打不開的話 — 不要因為這個卡住整週</p>
+    <p>arXiv 偶爾會擋自動連線，網址也可能改版。這個 repo 裡有 <code>docs/00-research-report.md</code>，那是從論文原文整理、已核對過的筆記。它的 <strong>§1（事實核對）</strong>和<strong>§2（概念階梯）</strong>涵蓋了下面「第一次掃描」要你拿到的全部東西。</p>
+    <p style="margin-bottom:0">用那份筆記完成這一課和週末第 2 題，然後記一句「我還沒讀原文」，等連結能開再補第三次掃描。<strong>但如果連結能開，就讀原文</strong> —— 二手筆記會夾帶，這一課下面就會證明給你看。</p>
+  </div>
 
   <p>因為你現在有了三樣東西，是四天前沒有的：你自己的判斷素材（L0）、結果 vs 過程的分辨能力（L1）、對裁判偏誤的認識（L2）。論文裡有一半的內容，是在解決你<strong>已經知道存在</strong>的問題。</p>
 
@@ -858,19 +864,32 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
 
 <hr>
 
-<section id="s-l5" data-h="7.5">
+<section id="s-l5" data-h="6">
   <p class="eyebrow">Lesson 5</p>
   <h2>環境設置 + 第一隻 Agent + 部署骨架</h2>
-  <p class="meta">7.5 小時 · 純動手</p>
+  <p class="meta">9 小時 · 純動手 · 佔整週六成</p>
 
   <h3>Part A · 環境（1 小時）</h3>
+  <p>三件事。<strong>第 3 件最容易被跳過，但少了它 Part B 完全跑不起來。</strong></p>
   <ol>
     <li><strong>Supabase</strong>（放資料的地方）— 到 supabase.com，恢復其中一個暫停的專案（或開新的，選 ap-southeast 區）。Settings → API 拿 <code>Project URL</code> 和 <code>anon public key</code>，貼到記事本備用。</li>
     <li><strong>Vercel</strong>（<span class="gl" title="把網頁放到網路上，讓別人用網址就能打開">部署</span>用）— 確認你能登入。這步先不用建專案。</li>
-    <li><strong>Notion Integration Token</strong> — 到 notion.so/my-integrations 建一個 internal integration，拿 token。<strong>然後回到你的 <code>[PF] Tasks Database</code> 頁面，右上 ⋯ → Connections → 加入這個 integration。</strong></li>
+    <li><strong>Judge 的 API key</strong> — 到 <strong>platform.openai.com → API keys</strong> 建一把新的。需要綁信用卡。</li>
   </ol>
   <div class="box a">
-    <p style="margin-bottom:0">第 3 步的後半段很多人漏掉。<strong>漏了 API 會回 404</strong>，而且錯誤訊息不會告訴你是這個原因 —— 它只會說「找不到」。</p>
+    <p class="bl">為什麼不能用 Claude 當 judge</p>
+    <p>因為規則一：判定的模型必須跟生成的模型不同家族。你整週都在用 Claude Code 寫東西，判定端如果也是 Claude，它會系統性地給自己高分 —— 就是你在 L2 學到的自我偏好偏誤。</p>
+    <p><strong>會花多少錢：</strong>這週只判 8–12 條短文字，<strong>總花費在 1 美元以下</strong>，通常是幾美分。</p>
+    <p style="margin-bottom:0">拿到 key 後，把 repo 根目錄的 <code>.env.example</code> 複製成 <code>.env</code>，填 <code>JUDGE_API_KEY</code>。<code>JUDGE_MODEL</code> 填你在 OpenAI 頁面看到的<strong>當前</strong>模型代號 —— 不要照抄任何教材裡寫死的名稱，那些過期得比這門課還快。想用 Gemini（aistudio.google.com，有免費額度）也可以。</p>
+  </div>
+  <div class="box">
+    <p class="bl">Notion 呢？這週不用設</p>
+    <p style="margin-bottom:0">Notion 同步是 <strong>Week 2</strong> 的內容，Week 1 的產出完全不碰它。現在去設 integration，你的 Tasks 頁面這週還是會空的，只是白花 15 分鐘。等需要的那一課會告訴你怎麼做。</p>
+  </div>
+  <div class="box a">
+    <p class="bl">還有一件沒人會告訴你的事</p>
+    <p>Part B 和 Part C 都需要你的電腦上有 <span class="gl" title="讓 JavaScript / TypeScript 能在你電腦上執行的執行環境">Node.js</span>。你可能已經有了。</p>
+    <p style="margin-bottom:0"><strong>不用先去裝</strong> —— 直接往下做，缺的話 Claude Code 會告訴你並要求你同意安裝。看到它要跑 <code>npm install</code> 之類的東西，<strong>同意就對了</strong>，那是正常流程。先講清楚是為了讓你看到那個畫面時不會停下來懷疑自己踩到陷阱。</p>
   </div>
 
   <h3>Part B · 第一隻 Agent：Spec-Resolution Judge（3 小時）</h3>
@@ -888,7 +907,7 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
   <p style="font-size:13.5px;color:var(--mute)">這個動作叫「預測 - 對照」。只有在你的預測被打臉的時候，你才會真的記住 —— 這是這一課最重要的機制，不要跳過。</p>
 
   <h4>執行</h4>
-  <p>打開 <span class="gl" title="Anthropic 的命令列版 Claude，可以直接讀寫你電腦上的檔案">Claude Code</span>，開一個<strong>新的 session</strong>（不要跟你在改 YCM codebase 的那個混在一起），把下面整段貼進去，然後把 L3 表格的內容也貼給它。</p>
+  <p>打開 <span class="gl" title="Anthropic 的命令列版 Claude，可以直接讀寫你電腦上的檔案">Claude Code</span>，開一個<strong>新的 session</strong>（不要跟你在改 YCM codebase 的那個混在一起），把下面整段貼進去，然後把 L3 表格的內容也貼給它。（<code>web/rqgm-console.html</code> 的「工具包」分頁有同一段，附複製按鈕，用哪邊都一樣。）</p>
   <div class="codewrap">
     <div class="codebar"><span>Claude Code prompt · spec-judge</span><button class="cbtn" data-copy="prompt-sj">複製</button></div>
     <pre id="prompt-sj">GOAL: Build a small evaluation agent called "spec-judge" that grades whether my
@@ -932,6 +951,18 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
 
   <h4>把結果記進台帳，順便認識 κ</h4>
   <p>打開 <code>web/rqgm-console.html</code>（直接用瀏覽器開）→ 台帳分頁，每一條決議加一筆案例，填你的判定和 AI 的判定，最有把握的幾條標成<strong>錨點</strong>。記完之後首頁的 <strong>κ</strong> 就會亮起來。</p>
+
+  <div class="box a">
+    <p class="bl">先講清楚：這週的 κ 幾乎一定很難看</p>
+    <p>只有 8–12 筆、而且判定大多集中在同一邊的時候，κ 本來就會怪。你可能會看到：</p>
+    <table>
+      <tr><th>你看到</th><th>意思</th></tr>
+      <tr><td><strong>0 或接近 0</strong></td><td>不是「完全不一致」。是「你們的一致程度跟隨便猜差不多」</td></tr>
+      <tr><td><strong>負數</strong></td><td>也正常。比隨便猜還差 —— 8 筆樣本下很容易發生</td></tr>
+      <tr><td><strong>空白 / 算不出來</strong></td><td>你的判定全在同一邊（例如 8 筆全 PASS）。κ 需要兩邊都有東西</td></tr>
+    </table>
+    <p style="margin-bottom:0">這三種都<strong>不代表 judge 壞掉，也不代表你做錯</strong>。它們代表樣本太少。κ 要到 20–30 筆才有意義，那是 Week 2 的事。<strong>這週只要看到那個數字出現、知道它從哪來就夠了。</strong></p>
+  </div>
   <p>κ（唸「卡帕」）在算的，就是下面這張表：</p>
 
   <figure>
@@ -967,7 +998,19 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
     <figcaption><span class="fignum">圖 5</span><b>κ 就是在問「你們兩把尺對得上嗎」。</b>Week 2 的關卡是 κ ≥ 0.6。這週只要看到它出現就好，還不用管數字是多少。</figcaption>
   </figure>
 
-  <h3>Part C · 把骨架部署起來（3.5 小時）</h3>
+  <h3>Part C · 把骨架部署起來（5 小時）</h3>
+
+  <div class="box a">
+    <p class="bl">先回答一個問題：這個專案放在哪裡</p>
+    <p><strong>放在這個 repo 裡面，開一個 <code>worktracker/</code> 資料夾。</strong>不要另開新的 GitHub repo。</p>
+    <pre>rqgm-learning-material/
+├── docs/            ← 教材
+├── web/             ← 學習工具
+├── supabase/        ← schema.sql
+└── worktracker/     ← ★ Part C 要建的 Next.js 專案放這裡</pre>
+    <p><strong>為什麼要講：</strong>Next.js 的教學文件通常假設你的專案就是 repo 根目錄，而你的不是。這會影響一個 Vercel 設定，不知道的話你會卡在「部署成功但打開是 404」。</p>
+    <p style="margin-bottom:0"><strong>那個設定：</strong>Vercel 建專案時（或之後到 <strong>Settings → General</strong>）把 <strong>Root Directory</strong> 設成 <code>worktracker</code>。只有這一個地方要改。漏掉的症狀很好認：build 成功但網址是 404 或空白。</p>
+  </div>
   <p>這一段沒有新概念，純粹是把地基蓋好。Week 3 的儀表板要長在這個骨架上，早點蓋完，後面每一週都省事。要做的只有三頁，而且<strong>都不寫業務邏輯，只做讀取</strong>。</p>
 
   <table>
@@ -987,7 +1030,9 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
   <h4>執行</h4>
   <div class="codewrap">
     <div class="codebar"><span>Claude Code prompt · worktracker 骨架</span><button class="cbtn" data-copy="prompt-sk">複製</button></div>
-    <pre id="prompt-sk">GOAL: Create a Next.js 15 App Router + TypeScript project called "worktracker".
+    <pre id="prompt-sk">GOAL: Create a Next.js 15 App Router + TypeScript project in a NEW `worktracker/`
+subdirectory of this existing repo. Do not create a separate repo, and do not move
+or touch docs/, web/, supabase/ or .claude/.
 Use the Supabase JS client. I will paste SUPABASE_URL and SUPABASE_ANON_KEY into
 .env.local. I drive Claude Code and review code — keep it simple and readable.
 
@@ -1009,12 +1054,14 @@ CONSTRAINTS:
   </div>
 
   <div class="box a">
-    <p class="bl">為什麼這裡要花 3.5 小時</p>
-    <p>因為第一次串 Supabase 的環境變數、和第一次上 Vercel，幾乎一定會卡一次。<strong>卡住是正常的，不是你笨。</strong>常見的兩個坑：</p>
+    <p class="bl">為什麼這裡要花 5 小時</p>
+    <p>因為第一次串 Supabase 的環境變數、和第一次上 Vercel，幾乎一定會卡一次。<strong>卡住是正常的，不是你笨。</strong>這 5 小時裡大概有 1.5 小時是在踩坑，那是預算的一部分。三個坑，連「去哪裡修」一起給你：</p>
     <ol style="margin-bottom:0">
-      <li><code>.env.local</code> 的變數名稱在 Next.js 裡必須以 <code>NEXT_PUBLIC_</code> 開頭，前端才讀得到。</li>
-      <li>Vercel 上要另外再設一次環境變數 —— 本機的 <code>.env.local</code> 不會跟著上去。</li>
+      <li><strong>變數名稱前綴。</strong><code>worktracker/.env.local</code> 裡要讓瀏覽器端讀到的變數，名稱必須以 <code>NEXT_PUBLIC_</code> 開頭。<em>症狀：</em>本機跑起來但頁面顯示 undefined。</li>
+      <li><strong>Vercel 要再設一次環境變數。</strong>本機的 <code>.env.local</code> 不會跟著上去（它被 gitignore 了，這是對的）。<em>去哪裡設：</em>Vercel → 專案 → <strong>Settings → Environment Variables</strong>，加完之後<strong>要重新 deploy 一次</strong> —— 改環境變數不會自動觸發部署，這是最常見的第二次卡住。</li>
+      <li><strong>Root Directory。</strong><em>去哪裡設：</em>Vercel → 專案 → <strong>Settings → General → Root Directory</strong> → 填 <code>worktracker</code>。</li>
     </ol>
+    <p style="margin-top:11px;margin-bottom:0">如果 Claude Code 用 CLI 幫你部署，它第一次會需要你在瀏覽器完成 <code>vercel login</code> —— 那個跳窗是正常的。</p>
   </div>
 
   <button class="ckpt" data-ck="l5"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有 spec-judge-report.md，台帳裡有 ≥ 8 筆案例，首頁 κ 有數字，而且 Vercel 上有一個打得開的網址，/ 和 /runs 都顯示空狀態而不是報錯。</span></span></button>
@@ -1181,11 +1228,11 @@ function toast(m){const t=document.getElementById("toast");t.textContent=m;t.cla
 
 const LESSONS=[
   {id:"s-l0",n:"L0",t:"採集你的判斷",a:0,b:0.5},
-  {id:"s-l1",n:"L1",t:"結果 vs 過程",a:0.5,b:2.5},
-  {id:"s-l2",n:"L2",t:"裁判的四種偏誤",a:2.5,b:4.5},
-  {id:"s-l3",n:"L3",t:"從 spec 到 rubric",a:4.5,b:6},
-  {id:"s-l4",n:"L4",t:"論文閱讀協議",a:6,b:7.5},
-  {id:"s-l5",n:"L5",t:"環境 + Agent + 部署",a:7.5,b:15}
+  {id:"s-l1",n:"L1",t:"結果 vs 過程",a:0.5,b:1.5},
+  {id:"s-l2",n:"L2",t:"裁判的四種偏誤",a:1.5,b:3},
+  {id:"s-l3",n:"L3",t:"從 spec 到 rubric",a:3,b:4.5},
+  {id:"s-l4",n:"L4",t:"論文閱讀協議",a:4.5,b:6},
+  {id:"s-l5",n:"L5",t:"環境 + Agent + 部署",a:6,b:15}
 ];
 const TOTAL=15,SCALE_H=326;
 

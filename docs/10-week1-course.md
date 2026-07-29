@@ -1,6 +1,6 @@
 # Week 1 教材 · AI Agent 評估的地基
 
-**給非工程背景學習者的第一週。** 約 15 小時，分 6 課。
+**給非工程背景學習者的第一週。** 六課合計約 15 小時，加上週末總結約 40 分鐘。
 
 ---
 
@@ -35,24 +35,25 @@ RQGM 那篇論文是寫給 ML 研究者的。它預設讀者已經熟悉樹搜�
 | 課 | 內容 | 時間 | 產出 |
 |---|---|---|---|
 | Lesson 0 | 先做這件事：採集你自己的判斷 | 30 min | 1 個現成範例 + 你自己補 2 個 |
-| Lesson 1 | 評估的兩種看法：看結果 vs 看過程 | 2 hr | 三個案例各勾兩個選項 + 一個填空 |
-| Lesson 2 | LLM 當裁判：它會怎麼騙你 | 2 hr | 四個情境四選一，全對就過 |
+| Lesson 1 | 評估的兩種看法：看結果 vs 看過程 | 1 hr | 三個案例各勾兩個選項 + 一個填空 |
+| Lesson 2 | LLM 當裁判：它會怎麼騙你 | 1.5 hr | 四個情境四選一，全對就過 |
 | Lesson 3 | 從 spec 到 rubric：你早就會了 | 1.5 hr | 3 條改寫（+2 條選做），逐條勾四題檢查表 |
 | Lesson 4 | 論文閱讀協議 + 符號對照表 | 1.5 hr | 讀完四個關鍵段落 + 三個一句話 |
-| Lesson 5 | 環境設置 + 第一隻 Agent + 部署骨架 | 7.5 hr | spec-judge 報告 + 部署的骨架 |
+| Lesson 5 | 環境設置 + 第一隻 Agent + 部署骨架 | 9 hr | spec-judge 報告 + 部署的骨架 |
 | 週末總結 | 三題開放性問答 | 40 min | 這週唯一要「寫一段」的地方 |
 
-**總計約 15 小時。** 建議節奏：Day 1 做 Lesson 0+1，Day 2 做 Lesson 2，Day 3 做 Lesson 3，Day 4 做 Lesson 4，Day 5–7 做 Lesson 5，最後收週末總結。
+**六課合計 15 小時，週末總結另外約 40 分鐘。** 建議節奏：Day 1 做 Lesson 0+1，Day 2 做 Lesson 2，Day 3 做 Lesson 3，Day 4 做 Lesson 4，Day 5–7 做 Lesson 5，最後收週末總結。
 
 兩件事先講清楚，這樣你不會在中途以為自己漏做了：
 
 **一、Lesson 0–4 沒有任何一題要你寫段落。** 全部是勾選、四選一、填空，或是改寫既有句子。
 每一課的檢核點都設計成「10 秒內能確認自己過了沒有」—— 這本身就是這門課在教的東西。
-需要自己組織想法的開放性問答，**全部集中在最後的週末總結作業**。那 40 分鐘是從 L1 和 L4
-挪出來的，不是額外加的。
+需要自己組織想法的開放性問答，**全部集中在最後的週末總結作業**。
 
-**二、Lesson 0–4 合計 7.5 小時，全部是閱讀與寫字，不需要安裝任何東西。**
-所有需要動工具的事情都集中在 Lesson 5。
+**二、Lesson 0–4 合計 6 小時，全部是閱讀與寫字，不需要安裝任何東西。**
+所有需要動工具的事情都集中在 Lesson 5，而 Lesson 5 佔了整週的 9 小時 —— 也就是**六成的時間
+在最後一課**。這個分配是刻意的，也是誠實的：前面五課讀起來很快，真正花時間的是裝設定和部署。
+排時間的時候請照這個比例排，不要以為每課都差不多長。
 
 ---
 
@@ -106,7 +107,7 @@ RQGM 那篇論文是寫給 ML 研究者的。它預設讀者已經熟悉樹搜�
 
 ---
 
-# Lesson 1 · 評估的兩種看法（2 小時）
+# Lesson 1 · 評估的兩種看法（1 小時）
 
 ## 核心概念：看結果，還是看過程
 
@@ -206,13 +207,13 @@ Lesson 3 挑改寫題目時優先挑它。
 
 ---
 
-# Lesson 2 · LLM 當裁判：它會怎麼騙你（2 小時）
+# Lesson 2 · LLM 當裁判：它會怎麼騙你（1.5 小時）
 
 ## 為什麼要用 LLM 當裁判
 
 你不可能每次都親自看 200 份報告。所以做法是：**寫一份評分標準，讓另一個 LLM 照著標準幫你打分。** 這叫 LLM-as-a-Judge。
 
-好消息是它真的有用。2023 年的一項經典研究（Zheng et al., MT-Bench 論文）發現，強模型當裁判時，與人類判斷的一致率超過 80% —— 這個數字大約等同於**兩個人類之間**的一致率。
+好消息是它真的有用。2023 年的一項經典研究發現（Zheng et al.，那篇論文提出了 MT-Bench —— 一個讓人類和 GPT-4 同時評分模型回答、再比對兩者是否一致的基準測試），強模型當裁判時，與人類判斷的一致率超過 80% —— 這個數字大約等同於**兩個人類之間**的一致率。
 
 換句話說：一個好的 LLM 裁判，跟你找另一個同事來審，準確度差不多。
 
@@ -439,6 +440,17 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一
 
 打開你的 YCM spec，找已經解決的 TBD 決議。**先做 3 條，做完再決定要不要加。**
 
+**找不到 3 條乾淨的怎麼辦？** 這很正常 —— 真實的 spec 裡，有些 TBD 是在留言串裡收掉的，
+有些是在 Slack 講完就沒回填。**任何一句「我當時要求過、而且對方交付後我會檢查」的話都算。**
+依序試這三個來源：
+
+1. 已經收掉的 TBD 決議（最理想）
+2. **還沒收掉的 TBD** —— 那就用你打算怎麼收它的想法
+3. 你在 review 裡打回某個東西時寫的那句話（Lesson 0 那三個案例就是現成的來源）
+
+**不要為了湊數編一條假的。** 假的條目在 Lesson 5 會讓你對照不出任何有用的東西 ——
+那一步的價值完全來自「AI 跟真實的你」有落差。
+
 每一條的流程固定四步：
 
 1. 抄下原始決議文字（照抄，不要順稿）
@@ -479,6 +491,18 @@ Lesson 5 跑完發現不夠再回來補。
 **現在，而且只有現在，你可以打開那篇論文了。**
 
 論文位置：https://arxiv.org/abs/2606.26294
+
+> **如果那個連結打不開怎麼辦？**（arXiv 偶爾會擋、或是網址改版）
+>
+> **不要因為這個卡住整週。** 這個 repo 裡有 `docs/00-research-report.md` —— 那是從論文
+> 原文整理出來、已經核對過的筆記。它的 **§1（事實核對）** 和 **§2（概念階梯）** 涵蓋了
+> 下面「第一次掃描」要你拿到的全部東西。
+>
+> **退路的正確用法：** 用那份筆記完成 Lesson 4 和週末總結第 2 題，然後在筆記本上記一句
+> 「我還沒讀過原文」。等連結能開的時候再補第三次掃描。
+>
+> **但如果連結能開，就讀原文。** 二手筆記會夾帶 —— 這件事下面就會講到，而且是這一課
+> 最重要的一段。
 
 ## 為什麼要等到現在
 
@@ -584,17 +608,47 @@ Lesson 5 跑完發現不夠再回來補。
 
 ---
 
-# Lesson 5 · 環境設置 + 第一隻 Agent + 部署骨架（7.5 小時）
+# Lesson 5 · 環境設置 + 第一隻 Agent + 部署骨架（9 小時）
 
 這一課是動手，不是概念。
 
 ## Part A · 環境（1 小時）
 
-三件事，照順序做：
+三件事，照順序做。**第 3 件最容易被跳過，但少了它 Part B 完全跑不起來。**
 
-1. **Supabase** — 到 supabase.com，把你其中一個暫停的專案恢復（或開新的，選 ap-southeast 區）。到 Settings → API 拿 `Project URL` 和 `anon public key`，存到記事本。
-2. **Vercel** — 到 vercel.com 確認你能登入。這步先不用建專案。
-3. **Notion Integration Token** — 到 notion.so/my-integrations 建一個 internal integration，拿到 token。然後回到你的 `[PF] Tasks Database` 頁面，右上 ⋯ → Connections → 加入你剛建的 integration。**這步很多人漏掉，漏了 API 會回 404。**
+1. **Supabase**（放資料的地方）— 到 supabase.com，把你其中一個暫停的專案恢復（或開新的，選 ap-southeast 區）。到 Settings → API 拿 `Project URL` 和 `anon public key`，存到記事本。
+
+2. **Vercel**（部署用）— 到 vercel.com 確認你能登入。這步先不用建專案。
+
+3. **Judge 的 API key** — **這是 Part B 的必要條件，不是選配。**
+
+   到 **platform.openai.com** → API keys → 建一把新的。需要綁一張信用卡。
+
+   > **為什麼不能用 Claude？** 因為規則一：判定的模型必須跟生成的模型不同家族。
+   > 你整週都在用 Claude Code 寫東西，所以判定端不能也是 Claude —— 那會系統性地
+   > 給自己高分（Lesson 2 的自我偏好偏誤）。
+
+   **會花多少錢：** 這週你只會判 8–12 條短文字。**總花費會在 1 美元以下**，通常是幾美分。
+   不用擔心，但也不要把 key 貼到任何公開的地方。
+
+   拿到 key 之後，把 repo 根目錄的 `.env.example` 複製成 `.env`，填進 `JUDGE_API_KEY`。
+   `JUDGE_MODEL` 填你在 OpenAI 頁面上看到的當前模型代號 —— **不要照抄任何教材裡寫死的
+   模型名稱**，那些過期得比這門課還快。
+
+   想用 Gemini 也可以（aistudio.google.com，有免費額度），一樣不違反規則一。
+
+**Notion 呢？** 這週不用設。Notion 同步是 **Week 2** 的內容，而且 Week 1 的產出完全不碰它 ——
+現在去設 integration，你的 Tasks 頁面這週還是會是空的，只是白花 15 分鐘。等到需要的那一課
+會告訴你怎麼做。
+
+### 還有一件沒人會告訴你的事
+
+Part B 和 Part C 都需要你的電腦上有 **Node.js**（跑 JavaScript／TypeScript 的東西）。
+
+你可能已經有了。**不用先去裝** —— 直接往下做，如果缺，Claude Code 會告訴你並要求你同意安裝。
+看到它要跑 `npm install` 或類似的東西，**同意就對了**，那是正常流程，不是它在亂裝東西。
+
+**在此之前先講清楚，是為了讓你看到那個畫面時不會停下來懷疑自己踩到什麼陷阱。**
 
 ## Part B · 第一隻 Agent：Spec-Resolution Judge（3 小時）
 
@@ -610,7 +664,9 @@ Lesson 5 跑完發現不夠再回來補。
 
 ### 執行
 
-把「工具包」分頁裡的第一段 prompt 貼進 Claude Code（或直接用下面這段），然後把你 Lesson 3 的表格內容貼給它。
+把下面整段 prompt 貼進 Claude Code，然後把你 Lesson 3 的表格內容也貼給它。
+
+（`web/rqgm-console.html` 的「工具包」分頁裡有同一段，附複製按鈕。用哪邊都一樣。）
 
 ```
 GOAL: Build a small evaluation agent called "spec-judge" that grades whether my
@@ -668,14 +724,48 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
 
 記完之後，首頁的 κ 就會亮起來。**那個數字就是「AI 這把尺跟你這把尺有多像」。**
 
-現在還不用管它是多少 —— Week 2 才是要把它拉到 0.6 以上的時候。這週只要看到它出現就好。
+### 先講清楚：這週的 κ 幾乎一定很難看
+
+**只有 8–12 筆、而且判定大多集中在同一邊的時候，κ 這個數字本來就會怪。** 你可能會看到：
+
+| 你看到 | 意思 |
+|---|---|
+| **0 或接近 0** | 不代表「完全不一致」。代表「你們的一致程度跟隨便猜差不多」 |
+| **負數** | 也是正常的。代表比隨便猜還差 —— 在 8 筆樣本下這很容易發生 |
+| **空白或算不出來** | 你的判定全部都是同一邊（例如 8 筆全 PASS）。κ 需要兩邊都有東西才算得出來 |
+
+**這三種情況都不代表 judge 壞掉，也不代表你做錯了。** 它們代表樣本太少。
+
+κ 要到 20–30 筆才開始有意義 —— 那是 Week 2 的事。
+**這週的目標只有一個：看到那個數字出現，知道它從哪裡來。** 數字本身現在不重要。
 
 ---
 
-## Part C · 把骨架部署起來（3.5 小時）
+## Part C · 把骨架部署起來（5 小時）
 
 **這一段沒有新概念，純粹是把地基蓋好。** Week 3 的儀表板要長在這個骨架上，早點蓋完，
 後面每一週都省事。
+
+### 先回答一個問題：這個專案放在哪裡
+
+**答案：放在這個 repo 裡面，開一個 `worktracker/` 資料夾。** 不要另開一個新的 GitHub repo。
+
+```
+rqgm-learning-material/
+├── docs/            ← 教材
+├── web/             ← 學習工具
+├── supabase/        ← schema.sql
+└── worktracker/     ← ★ Part C 要建的 Next.js 專案就放這裡
+```
+
+**為什麼講這個：** 因為 Next.js 的教學文件通常假設你的專案就是整個 repo 的根目錄，
+而你的不是。這會影響一個 Vercel 設定，如果不知道，你會卡在「部署成功但打開是 404」。
+
+**那個設定是：** 在 Vercel 建專案時（或之後到 Project Settings → General），
+把 **Root Directory** 設成 `worktracker`。**只有這一個地方要改。**
+
+漏了這一步的症狀很好認：Vercel 說 build 成功，但網址打開是 404 或空白。
+看到那個症狀，回來改這個設定就好。
 
 要做出來的東西只有三頁，而且**都不寫業務邏輯，只做讀取**：
 
@@ -696,7 +786,9 @@ schema** —— 現有這份已經包含了 `stale`（選擇性擦除）和 `is_
 ### 執行
 
 ```
-GOAL: Create a Next.js 15 App Router + TypeScript project called "worktracker".
+GOAL: Create a Next.js 15 App Router + TypeScript project in a NEW `worktracker/`
+subdirectory of this existing repo. Do not create a separate repo, and do not move
+or touch docs/, web/, supabase/ or .claude/.
 Use the Supabase JS client. I will paste SUPABASE_URL and SUPABASE_ANON_KEY into
 .env.local. I drive Claude Code and review code — keep it simple and readable.
 
@@ -717,13 +809,29 @@ CONSTRAINTS:
   Then implement. After each item, run it and show me the result.
 ```
 
-### 為什麼這裡要花 3.5 小時
+### 為什麼這裡要花 5 小時
 
 因為第一次串 Supabase 的環境變數、和第一次上 Vercel，幾乎一定會卡一次。
-**卡住是正常的，不是你笨。** 常見的兩個坑：
+**卡住是正常的，不是你笨。** 這 5 小時裡大概有 1.5 小時是在踩坑，那是預算的一部分。
 
-1. `.env.local` 的變數名稱在 Next.js 裡必須以 `NEXT_PUBLIC_` 開頭，前端才讀得到。
-2. Vercel 上要另外再設一次環境變數 —— 本機的 `.env.local` 不會跟著上去。
+三個坑，連「去哪裡修」一起寫給你：
+
+**坑 1 · 環境變數名稱前綴**
+`worktracker/.env.local` 裡的變數，如果要讓瀏覽器端讀到，名稱必須以 `NEXT_PUBLIC_` 開頭
+（例如 `NEXT_PUBLIC_SUPABASE_URL`）。沒有前綴的變數只有伺服器端讀得到。
+**症狀：** 本機跑起來但頁面顯示 undefined 或抓不到資料。
+
+**坑 2 · Vercel 要再設一次環境變數**
+本機的 `.env.local` **不會**跟著上傳（它被 gitignore 了，這是對的）。
+**去哪裡設：** Vercel → 你的專案 → **Settings → Environment Variables** → 一個一個加，
+然後**重新 deploy 一次**（改環境變數不會自動觸發重新部署，這是最常見的第二次卡住）。
+
+**坑 3 · Root Directory**
+就是上面說的那個。**去哪裡設：** Vercel → 專案 → **Settings → General → Root Directory**
+→ 填 `worktracker`。
+
+如果 Claude Code 用 CLI 幫你部署，它第一次會需要你在瀏覽器完成 `vercel login`
+—— 那個瀏覽器跳窗是正常的。
 
 > **檢核點：** 你有一份 `spec-judge-report.md`，台帳裡有至少 8 筆案例，首頁 κ 有數字，
 > 而且 Vercel 上有一個打得開的網址，`/` 和 `/runs` 都顯示空狀態而不是報錯。

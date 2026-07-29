@@ -30,17 +30,19 @@ to **rewrite the rubric wording**, never to change my anchor labels.
 Teaching material: `docs/10-week1-course.md` · interactive version: `web/week1-course.html`
 
 - [ ] **L0** (0.5h) Write down 3 real accept/reject decisions with two layers of "why"
-- [ ] **L1** (2h) Outcome vs process evaluation
-- [ ] **L2** (2h) The four LLM-judge biases
-- [ ] **L3** (1.5h) Rewrite 5 TBD resolutions into binary verifiable criteria
+- [ ] **L1** (1h) Outcome vs process evaluation
+- [ ] **L2** (1.5h) The four LLM-judge biases
+- [ ] **L3** (1.5h) Rewrite 3 TBD resolutions into binary verifiable criteria (+2 optional)
 - [ ] **L4** (1.5h) Three-pass read of the paper + symbol table
-- [ ] **L5** (7.5h) Environment setup + `spec-judge` + deploy the skeleton
-  - Part A (1h) Supabase / Vercel / Notion credentials
+- [ ] **L5** (9h) Environment setup + `spec-judge` + deploy the skeleton
+  - Part A (1h) Supabase, Vercel, and the judge API key — Notion moved to Week 2
   - Part B (3h) Build `spec-judge`
-  - Part C (3.5h) Next.js + Supabase skeleton, applied schema, deployed
+  - Part C (5h) Next.js skeleton in `worktracker/`, applied schema, deployed
+- [ ] **Weekend** (40min) Three open-ended questions
 
-Lessons 0–4 are reading and writing only — 7.5h with no setup required. All of the
-tooling work is in Lesson 5.
+Lessons 0–4 are reading and writing only — 6h with no setup required. Lesson 5 is 60%
+of the week on its own; that split is real, so plan against it rather than assuming
+lessons are evenly sized.
 
 **Week 1 deliverables:**
 - [ ] `spec-judge.ts` runs and produces `spec-judge-report.md`
