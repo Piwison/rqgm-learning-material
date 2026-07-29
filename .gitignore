@@ -1,0 +1,36 @@
+# deps
+node_modules/
+.pnp
+.pnp.js
+
+# env & secrets  — never commit these
+.env
+.env.*
+!.env.example
+
+# build
+.next/
+out/
+dist/
+build/
+
+# vercel / supabase local
+.vercel
+.supabase/
+
+# eval outputs (regenerate, don't version)
+*-report.md
+eval-runs/
+!docs/*-report.md
+
+# os / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# logs
+*.log
+npm-debug.log*
