@@ -105,10 +105,14 @@ outputs as "should be rejected" cases.
 
 ## 3. Week-by-week (~40–50 hrs)
 
-### Week 1 — Foundations + first eval agent + skeleton (11–12 hrs)
+### Week 1 — Foundations + first eval agent + skeleton (~15 hrs)
 
 Lessons: RQGM abstract + intro and the DGM blog (2h) · LLM-judge biases and rubric design
-(2h) · spec-driven development ↔ rubrics (1.5h) · environment setup (1h).
+(2h) · spec-driven development ↔ rubrics (1.5h) · environment setup (1h) · skeleton build
+and deploy (3.5h).
+
+The deploy was originally left out of the budget while still being listed as a deliverable;
+it is Lesson 5 Part C and it is why Week 1 is ~15 hrs, not 11–12.
 
 Exercise: build **spec-judge** (see `10-week1-course.md` for the full prompt) and the
 Next.js + Supabase skeleton.
