@@ -1,6 +1,6 @@
 # Week 1 教材 · AI Agent 評估的地基
 
-**給非工程背景學習者的第一週。** 約 11–12 小時，分 6 課。
+**給非工程背景學習者的第一週。** 約 15 小時，分 6 課。
 
 ---
 
@@ -39,9 +39,11 @@ RQGM 那篇論文是寫給 ML 研究者的。它預設讀者已經熟悉樹搜�
 | Lesson 2 | LLM 當裁判：它會怎麼騙你 | 2 hr | 四種偏誤的辨識能力 |
 | Lesson 3 | 從 spec 到 rubric：你早就會了 | 1.5 hr | 5 條改寫成二元可驗證的條目 |
 | Lesson 4 | 論文閱讀協議 + 符號對照表 | 1.5 hr | 讀完論文四個關鍵段落 |
-| Lesson 5 | 環境設置 + 第一隻 Agent | 4 hr | spec-judge 報告 + 部署的骨架 |
+| Lesson 5 | 環境設置 + 第一隻 Agent + 部署骨架 | 7.5 hr | spec-judge 報告 + 部署的骨架 |
 
-**總計約 11.5 小時。** 建議節奏：Day 1 做 Lesson 0+1，Day 2 做 Lesson 2，Day 3 做 Lesson 3，Day 4 做 Lesson 4，Day 5–6 做 Lesson 5。
+**總計約 15 小時。** 建議節奏：Day 1 做 Lesson 0+1，Day 2 做 Lesson 2，Day 3 做 Lesson 3，Day 4 做 Lesson 4，Day 5–7 做 Lesson 5。
+
+Lesson 0–4 合計 7.5 小時，全部是閱讀與寫字，不需要安裝任何東西。**所有需要動工具的事情都集中在 Lesson 5。**
 
 ---
 
@@ -462,7 +464,7 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一
 
 ---
 
-# Lesson 5 · 環境設置 + 第一隻 Agent（4 小時）
+# Lesson 5 · 環境設置 + 第一隻 Agent + 部署骨架（7.5 小時）
 
 這一課是動手，不是概念。
 
@@ -548,7 +550,63 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
 
 現在還不用管它是多少 —— Week 2 才是要把它拉到 0.6 以上的時候。這週只要看到它出現就好。
 
-> **檢核點：** 你有一份 `spec-judge-report.md`，台帳裡有至少 8 筆案例，首頁 κ 有數字。
+---
+
+## Part C · 把骨架部署起來（3.5 小時）
+
+**這一段沒有新概念，純粹是把地基蓋好。** Week 3 的儀表板要長在這個骨架上，早點蓋完，
+後面每一週都省事。
+
+要做出來的東西只有三頁，而且**都不寫業務邏輯，只做讀取**：
+
+| 頁面 | 內容 | 空資料時 |
+|---|---|---|
+| `/` | `tasks` 表的清單 | 顯示空狀態，不是錯誤 |
+| `/runs` | `agent_runs` 表的清單 | 顯示空狀態，不是錯誤 |
+| 部署 | Vercel 上有一個可以打開的網址 | — |
+
+### 先套用 schema
+
+`supabase/schema.sql` **已經寫好了**，五張表加一個 `v_current_runs` view。
+
+到 Supabase → SQL Editor，把那個檔案整份貼進去執行。**不要讓 AI 幫你重新產生一份
+schema** —— 現有這份已經包含了 `stale`（選擇性擦除）和 `is_anchor`（錨點）這些
+你 Week 4 才會用到、但現在漏掉就要重做的欄位。
+
+### 執行
+
+```
+GOAL: Create a Next.js 15 App Router + TypeScript project called "worktracker".
+Use the Supabase JS client. I will paste SUPABASE_URL and SUPABASE_ANON_KEY into
+.env.local. I drive Claude Code and review code — keep it simple and readable.
+
+IMPORTANT: The database schema already exists at `supabase/schema.sql` (5 tables +
+a v_current_runs view) and I have already applied it. Do NOT write a new schema.
+Read that file and match your queries to the columns that are actually there.
+
+WHAT TO BUILD:
+1. A `/` page listing rows from `tasks` (id, title, status, priority, source,
+   updated_at). If the table is empty, show an empty state — not an error.
+2. A `/runs` page listing rows from `agent_runs` (id, agent_name, verdict, score,
+   model_used, tokens_in, tokens_out, cost_usd, created_at).
+3. Deploy to Vercel.
+
+CONSTRAINTS:
+- No application logic beyond CRUD reads. No auth. No styling framework.
+- Before you start, restate in ONE line how you will VERIFY each of the 3 items.
+  Then implement. After each item, run it and show me the result.
+```
+
+### 為什麼這裡要花 3.5 小時
+
+因為第一次串 Supabase 的環境變數、和第一次上 Vercel，幾乎一定會卡一次。
+**卡住是正常的，不是你笨。** 常見的兩個坑：
+
+1. `.env.local` 的變數名稱在 Next.js 裡必須以 `NEXT_PUBLIC_` 開頭，前端才讀得到。
+2. Vercel 上要另外再設一次環境變數 —— 本機的 `.env.local` 不會跟著上去。
+
+> **檢核點：** 你有一份 `spec-judge-report.md`，台帳裡有至少 8 筆案例，首頁 κ 有數字，
+> 而且 Vercel 上有一個打得開的網址，`/` 和 `/runs` 都顯示空狀態而不是報錯。
 
 ---
 

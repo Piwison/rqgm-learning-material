@@ -25,7 +25,7 @@ to **rewrite the rubric wording**, never to change my anchor labels.
 
 ---
 
-## Week 1 checklist (11.5 hrs)
+## Week 1 checklist (~15 hrs)
 
 Teaching material: `docs/10-week1-course.md` · interactive version: `web/week1-course.html`
 
@@ -34,7 +34,13 @@ Teaching material: `docs/10-week1-course.md` · interactive version: `web/week1-
 - [ ] **L2** (2h) The four LLM-judge biases
 - [ ] **L3** (1.5h) Rewrite 5 TBD resolutions into binary verifiable criteria
 - [ ] **L4** (1.5h) Three-pass read of the paper + symbol table
-- [ ] **L5** (4h) Environment setup + build `spec-judge`
+- [ ] **L5** (7.5h) Environment setup + `spec-judge` + deploy the skeleton
+  - Part A (1h) Supabase / Vercel / Notion credentials
+  - Part B (3h) Build `spec-judge`
+  - Part C (3.5h) Next.js + Supabase skeleton, applied schema, deployed
+
+Lessons 0–4 are reading and writing only — 7.5h with no setup required. All of the
+tooling work is in Lesson 5.
 
 **Week 1 deliverables:**
 - [ ] `spec-judge.ts` runs and produces `spec-judge-report.md`

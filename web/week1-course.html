@@ -235,7 +235,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   <div class="rail-head">
     <p class="kicker">Week 1 · Course</p>
     <h1>AI Agent<br>評估的地基</h1>
-    <p class="sub">6 課 · 11.5 小時</p>
+    <p class="sub">6 課 · 約 15 小時</p>
   </div>
   <div class="jump">
     <button onclick="document.getElementById('s-gloss').scrollIntoView()">術語表</button>
@@ -820,8 +820,8 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
 
 <section id="s-l5" data-h="7.5">
   <p class="eyebrow">Lesson 5</p>
-  <h2>環境設置 + 第一隻 Agent</h2>
-  <p class="meta">4 小時 · 純動手</p>
+  <h2>環境設置 + 第一隻 Agent + 部署骨架</h2>
+  <p class="meta">7.5 小時 · 純動手</p>
 
   <h3>Part A · 環境（1 小時）</h3>
   <ol>
@@ -927,12 +927,62 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
     <figcaption><span class="fignum">圖 5</span><b>κ 就是在問「你們兩把尺對得上嗎」。</b>Week 2 的關卡是 κ ≥ 0.6。這週只要看到它出現就好，還不用管數字是多少。</figcaption>
   </figure>
 
-  <button class="ckpt" data-ck="l5"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有 spec-judge-report.md，台帳裡有 ≥ 8 筆案例，首頁 κ 有數字。</span></span></button>
+  <h3>Part C · 把骨架部署起來（3.5 小時）</h3>
+  <p>這一段沒有新概念，純粹是把地基蓋好。Week 3 的儀表板要長在這個骨架上，早點蓋完，後面每一週都省事。要做的只有三頁，而且<strong>都不寫業務邏輯，只做讀取</strong>。</p>
+
+  <table>
+    <thead><tr><th>頁面</th><th>內容</th><th>空資料時</th></tr></thead>
+    <tbody>
+      <tr><td><code>/</code></td><td><code>tasks</code> 表的清單</td><td>顯示空狀態，不是錯誤</td></tr>
+      <tr><td><code>/runs</code></td><td><code>agent_runs</code> 表的清單</td><td>顯示空狀態，不是錯誤</td></tr>
+      <tr><td>部署</td><td>Vercel 上有一個可以打開的網址</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box a">
+    <p class="bl">先套用 schema，而且不要重做一份</p>
+    <p style="margin-bottom:0"><code>supabase/schema.sql</code> <strong>已經寫好了</strong> —— 五張表加一個 <code>v_current_runs</code> view。到 Supabase → SQL Editor 把那份檔案整份貼進去執行就好。<strong>不要讓 AI 幫你重新產生一份</strong>：現有這份已經包含 <code>stale</code>（選擇性擦除）和 <code>is_anchor</code>（錨點）這些你 Week 4 才會用到、但現在漏掉就得整個重做的欄位。</p>
+  </div>
+
+  <h4>執行</h4>
+  <div class="codewrap">
+    <div class="codebar"><span>Claude Code prompt · worktracker 骨架</span><button class="cbtn" data-copy="prompt-sk">複製</button></div>
+    <pre id="prompt-sk">GOAL: Create a Next.js 15 App Router + TypeScript project called "worktracker".
+Use the Supabase JS client. I will paste SUPABASE_URL and SUPABASE_ANON_KEY into
+.env.local. I drive Claude Code and review code — keep it simple and readable.
+
+IMPORTANT: The database schema already exists at `supabase/schema.sql` (5 tables +
+a v_current_runs view) and I have already applied it. Do NOT write a new schema.
+Read that file and match your queries to the columns that are actually there.
+
+WHAT TO BUILD:
+1. A `/` page listing rows from `tasks` (id, title, status, priority, source,
+   updated_at). If the table is empty, show an empty state — not an error.
+2. A `/runs` page listing rows from `agent_runs` (id, agent_name, verdict, score,
+   model_used, tokens_in, tokens_out, cost_usd, created_at).
+3. Deploy to Vercel.
+
+CONSTRAINTS:
+- No application logic beyond CRUD reads. No auth. No styling framework.
+- Before you start, restate in ONE line how you will VERIFY each of the 3 items.
+  Then implement. After each item, run it and show me the result.</pre>
+  </div>
+
+  <div class="box a">
+    <p class="bl">為什麼這裡要花 3.5 小時</p>
+    <p>因為第一次串 Supabase 的環境變數、和第一次上 Vercel，幾乎一定會卡一次。<strong>卡住是正常的，不是你笨。</strong>常見的兩個坑：</p>
+    <ol style="margin-bottom:0">
+      <li><code>.env.local</code> 的變數名稱在 Next.js 裡必須以 <code>NEXT_PUBLIC_</code> 開頭，前端才讀得到。</li>
+      <li>Vercel 上要另外再設一次環境變數 —— 本機的 <code>.env.local</code> 不會跟著上去。</li>
+    </ol>
+  </div>
+
+  <button class="ckpt" data-ck="l5"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有 spec-judge-report.md，台帳裡有 ≥ 8 筆案例，首頁 κ 有數字，而且 Vercel 上有一個打得開的網址，/ 和 /runs 都顯示空狀態而不是報錯。</span></span></button>
 </section>
 
 <hr>
 
-<section id="s-quiz" data-h="11.5">
+<section id="s-quiz" data-h="15">
   <p class="eyebrow">本週自我檢核</p>
   <h2>十題</h2>
   <p class="meta">先答，再按「顯示答案」· 不要回頭翻</p>
@@ -946,7 +996,7 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
 
 <hr>
 
-<section id="s-five" data-h="11.5">
+<section id="s-five" data-h="15">
   <p class="eyebrow">收尾</p>
   <h2>你這週結束時<br>應該能說出的五句話</h2>
   <p class="meta">不看筆記，講得出來</p>
@@ -1038,14 +1088,14 @@ const LESSONS=[
   {id:"s-l2",n:"L2",t:"裁判的四種偏誤",a:2.5,b:4.5},
   {id:"s-l3",n:"L3",t:"從 spec 到 rubric",a:4.5,b:6},
   {id:"s-l4",n:"L4",t:"論文閱讀協議",a:6,b:7.5},
-  {id:"s-l5",n:"L5",t:"環境 + 第一隻 Agent",a:7.5,b:11.5}
+  {id:"s-l5",n:"L5",t:"環境 + Agent + 部署",a:7.5,b:15}
 ];
-const TOTAL=11.5,SCALE_H=326;
+const TOTAL=15,SCALE_H=326;
 
 function buildRail(){
   const sc=document.getElementById("scale");
   sc.style.height=SCALE_H+"px";
-  for(let h=0;h<=11;h++){
+  for(let h=0;h<=15;h++){
     const y=(h/TOTAL)*SCALE_H,maj=h%2===0;
     const t=document.createElement("div");
     t.className="tick"+(maj?" major":"");t.style.top=y+"px";sc.appendChild(t);
