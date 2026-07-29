@@ -83,7 +83,7 @@ that will actually run.
   one family. Gemini is an acceptable substitute. **Pin no model ID in the material** —
   record the actual one per run in `agent_runs.model_used`.
 - Notion sync direction: read-only first, write-back in Week 4.
-- Whether `web/rqgm-console.jsx` becomes part of WorkTracker or stays a standalone
+- Whether `web/rqgm-console.html` becomes part of WorkTracker or stays a standalone
   study tool. Leaning: its data model (`cases` / `epochs` / `ledger`) is already the
   prototype for the Supabase schema, so port the *schema*, rebuild the *UI*.
 

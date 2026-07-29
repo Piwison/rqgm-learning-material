@@ -21,7 +21,7 @@ reduced to something one non-engineer can actually build in ~40 hours.
 | Take Week 1 (interactive) | [`web/week1-course.html`](web/week1-course.html) — open in a browser |
 | Take Week 1 (plain text) | [`docs/10-week1-course.md`](docs/10-week1-course.md) |
 | Understand the whole plan | [`docs/00-research-report.md`](docs/00-research-report.md) |
-| Track progress + run the calculators | [`web/rqgm-console.jsx`](web/rqgm-console.jsx) |
+| Track progress + run the calculators | [`web/rqgm-console.html`](web/rqgm-console.html) — open in a browser |
 
 Working in Claude Code? It reads [`CLAUDE.md`](CLAUDE.md) automatically. Everything it
 needs to behave correctly on this project is in there.
@@ -61,7 +61,7 @@ These are why the loop is trustworthy. Full detail in [`CLAUDE.md`](CLAUDE.md).
 CLAUDE.md          Project memory — read first if you're an agent
 PROGRESS.md        Current state. Updated at the end of every session.
 docs/              Research report and course material
-web/               Standalone study tools — no build step, open directly
+web/               Standalone study tools — no build step, no network, open directly
 supabase/          Database schema
 .claude/skills/    eval-loop/ — the Week 4 target artifact (currently a stub)
 ```
