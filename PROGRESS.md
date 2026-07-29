@@ -39,7 +39,7 @@ Teaching material: `docs/10-week1-course.md` · interactive version: `web/week1-
 **Week 1 deliverables:**
 - [ ] `spec-judge.ts` runs and produces `spec-judge-report.md`
 - [ ] Next.js + Supabase skeleton deployed to Vercel (Tasks + Runs pages, empty states)
-- [ ] `supabase/schema.sql` applied — 4 tables live
+- [ ] `supabase/schema.sql` applied as-is — 5 tables + the `v_current_runs` view live
 - [ ] ≥ 8 cases logged with my verdict and the judge's verdict
 
 ---

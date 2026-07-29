@@ -211,15 +211,16 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
   },
   {
     id: "p1", epoch: "01", name: "WorkTracker 骨架",
-    note: "只做讀取，不做業務邏輯。重點是四張表的 schema 你要看得懂。",
+    note: "只做讀取，不做業務邏輯。schema 已經寫好了，這一步是套用它、不是重寫它。",
     body: `Create a new Next.js 15 App Router + TypeScript project called "worktracker".
 Use the Supabase JS client. I will paste my SUPABASE_URL and SUPABASE_ANON_KEY into .env.local.
 
+IMPORTANT: The database schema already exists at \`supabase/schema.sql\` (5 tables + a v_current_runs view) and I have already applied it. Do NOT write a new schema — it already carries columns I need later (\`stale\` for selective erasure, \`is_anchor\` for anchors). Read that file and match your queries to the columns that are actually there.
+
 Requirements (verify each before moving on):
 1. A \`/\` page that lists rows from a Supabase table \`tasks\` (columns: id, title, status, priority, source, updated_at). If empty, show an empty state, not an error.
-2. A \`/runs\` page listing rows from \`agent_runs\` (id, agent_name, input_ref, verdict, score, tokens_in, tokens_out, cost_usd, created_at).
-3. A \`supabase/schema.sql\` with CREATE TABLE for both, plus a \`rubrics\` table (id, name, version, criteria_json, created_at) and an \`eval_cases\` table (id, case_ref, input, expected_verdict, is_anchor boolean, created_at).
-4. Deploy to Vercel. Do NOT write application logic beyond CRUD reads yet.
+2. A \`/runs\` page listing rows from \`agent_runs\` (id, agent_name, verdict, score, model_used, tokens_in, tokens_out, cost_usd, created_at).
+3. Deploy to Vercel. Do NOT write application logic beyond CRUD reads yet.
 
 Before you start: restate in ONE line how you will VERIFY each of the 4 items. Then implement. After each item, run it and show me the result.`,
   },
