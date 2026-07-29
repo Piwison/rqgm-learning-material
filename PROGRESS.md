@@ -76,7 +76,12 @@ that will actually run.
 
 ## Open questions / parked
 
-- Which model family for the judge? Must not be the one generating. Decide in Week 2.
+- ~~Which model family for the judge?~~ **Decided: OpenAI GPT family.** Needed in
+  Lesson 5, not Week 2 — `spec-judge` cannot run without a non-Claude key. Chosen for
+  strict JSON-schema output (rule 4 depends on the evidence field not drifting mid-batch);
+  its cheap and strong models are both non-Claude, so Week 3 cost routing stays inside
+  one family. Gemini is an acceptable substitute. **Pin no model ID in the material** —
+  record the actual one per run in `agent_runs.model_used`.
 - Notion sync direction: read-only first, write-back in Week 4.
 - Whether `web/rqgm-console.jsx` becomes part of WorkTracker or stays a standalone
   study tool. Leaning: its data model (`cases` / `epochs` / `ledger`) is already the
