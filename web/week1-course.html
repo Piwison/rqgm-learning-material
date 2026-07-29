@@ -227,6 +227,22 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
 }
 @media(min-width:901px){.rh-m{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* pick-one rows (L1) and the four-test ticks per L3 row */
+.pickrow{border-top:1px solid var(--line);padding:13px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.pickrow .pl{font-size:13px;color:var(--ink);flex:1 1 190px;min-width:0}
+.pickrow .pl em{color:var(--dim);font-style:normal}
+.k4{display:flex;gap:5px;flex-wrap:wrap}
+.k4 button{background:none;border:1px solid var(--line2);color:var(--dim);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 8px;cursor:pointer}
+.k4 button.on{background:var(--verd);border-color:var(--verd);color:#fff}
+.rowtag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;padding:2px 6px;border:1px solid var(--line2);color:var(--dim)}
+.rowtag.req{border-color:var(--queen-l);color:var(--queen);background:var(--queen-w)}
+.l3row{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.l3row .l3h{display:flex;gap:9px;align-items:center;margin-bottom:9px}
+.miss{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--queen)}
+.miss.ok{color:var(--verd)}
 </style>
 </head>
 <body>
@@ -235,7 +251,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   <div class="rail-head">
     <p class="kicker">Week 1 · Course</p>
     <h1>AI Agent<br>評估的地基</h1>
-    <p class="sub">6 課 · 約 15 小時</p>
+    <p class="sub">6 課 + 週末總結 · 約 15 小時</p>
   </div>
   <div class="jump">
     <button onclick="document.getElementById('s-gloss').scrollIntoView()">術語表</button>
@@ -340,17 +356,17 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
 
   <p class="lede">在讀任何東西之前，先產出素材。這 30 分鐘的產出會被後面每一課用到，也會變成你 Week 2 的<span class="gl" title="一小批你親手確認過答案、之後不再更動的案例">錨點</span>集。</p>
 
-  <h3>動手</h3>
-  <p>回想過去兩週，寫下 <strong>3 個你做過的「接受 / 拒絕」判斷</strong>。可以是一條 YCM 的 TBD 決議、一個 YCO 原型、或一份 RD 的 handoff 實作。</p>
+  <h3>先看一個寫好的</h3>
+  <p><strong>案例 1 已經幫你填好了</strong>（下面那個範例框），當格式參考。你只要再補 <strong>2 個</strong>。</p>
 
   <div class="box a">
-    <p class="bl">關鍵動作：把「為什麼」再逼問一層</p>
-    <p>寫完第一層理由後，對每一個問自己：<strong>如果換一個人來審，他會做出跟我一樣的判斷嗎？</strong></p>
-    <p style="margin-bottom:0">如果答案是「不一定」，代表你的理由裡有隱含的東西沒說出口。把它挖出來 —— 那就是你 rubric 缺的那一條。</p>
+    <p class="bl">第二層卡住的話，用這句話開頭</p>
+    <p>「如果換一個人來審，他可能會判不一樣，因為我其實還要求了＿＿＿＿。」</p>
+    <p style="margin-bottom:0">把空格填掉就是第二層。填不出來也沒關係 —— 那代表這一條你的標準本來就很清楚，第二層寫「同一個判準，任何人看都會一樣」就可以往下走。</p>
   </div>
 
   <div class="box">
-    <p class="bl">範例</p>
+    <p class="bl">案例 1 · 範例（已填好，不用動）</p>
     <p style="margin-bottom:6px"><strong>案例</strong>　TBD-MV-03 的決議</p>
     <p style="margin-bottom:6px"><strong>判斷</strong>　拒絕</p>
     <p style="margin-bottom:6px"><strong>為什麼 v1</strong>　它寫「播放體驗要流暢」，但沒有人能驗證什麼叫流暢。</p>
@@ -358,7 +374,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   </div>
 
   <div class="ws" id="ws-l0">
-    <div class="ws-h"><span class="wt">作業 L0 · 你的三個案例</span><span class="wn" id="sv-l0">—</span></div>
+    <div class="ws-h"><span class="wt">作業 L0 · 再補 2 個</span><span class="wn" id="sv-l0">—</span></div>
     <div id="l0-blocks"></div>
   </div>
 
@@ -366,7 +382,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   <p>你剛剛做的事情有個名字：<strong>把隱性判斷顯性化</strong>。你腦中有一把尺，但那把尺目前只存在你腦中 —— 所以它無法被重複、無法交給機器、無法在你休假時繼續運作。</p>
   <p>接下來四週要做的所有事，本質上都是同一件：<em>把你腦中那把尺搬出來，變成一個有版本、可被檢驗、也可能被推翻的東西。</em></p>
 
-  <button class="ckpt" data-ck="l0"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有 3 個案例，每個都有兩層「為什麼」。</span></span></button>
+  <button class="ckpt" data-ck="l0"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">範例 1 + 我自己的 2 個 = 3 個案例，每個都有兩層「為什麼」。</span></span></button>
 </section>
 
 <hr>
@@ -467,8 +483,14 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   </table>
   <p>你 Week 1 的第一隻 Agent 會是<strong>純結果評估</strong>，因為它最簡單。過程評估留到 Week 3。</p>
 
-  <h3>動手：套用到你的案例</h3>
-  <p>回到 Lesson 0 那三個案例。對每一個問：我當時是在看<strong>結果</strong>還是<strong>過程</strong>？如果只看另一邊，我的判斷會改變嗎？</p>
+  <h3>動手：三個案例各勾兩下</h3>
+  <p>回到 Lesson 0 那三個案例，每一個只做兩個動作，<strong>不用寫理由</strong>。判斷方式：如果你當時只看到最終產物就下判斷了，那是<strong>結果</strong>；如果你去追它中間怎麼來的，那是<strong>過程</strong>。大部分 spec review 是結果。</p>
+
+  <div class="ws">
+    <div class="ws-h"><span class="wt">作業 L1 · 各勾兩下</span><span class="wn" id="sv-l1">—</span></div>
+    <div id="l1-rows"></div>
+    <div class="cc-out" id="l1-out"></div>
+  </div>
 
   <div class="box a">
     <p class="bl">兩個常見誤解</p>
@@ -476,7 +498,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
     <p style="margin-bottom:0"><strong>「看結果 = 看最終輸出的字面內容。」</strong>不完全是。「結果」指的是<strong>任務有沒有達成</strong>。對編程 Agent 來說，結果是「測試有沒有過」，不是「程式碼看起來漂不漂亮」。</p>
   </div>
 
-  <button class="ckpt" data-ck="l1"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我能用自己的話，向沒學過的人解釋「為什麼只看結果會高估 Agent 能力」。</span></span></button>
+  <button class="ckpt" data-ck="l1"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">三個案例都勾完了，而且我填得出這句：「只看結果會高估能力，因為它可能靠＿＿達成正確結果。」</span></span></button>
 </section>
 
 <hr>
@@ -570,6 +592,21 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
     <p class="bl">常見誤解</p>
     <p style="margin-bottom:0"><strong>「用最強的模型當裁判就好了。」</strong>最強的模型一樣有這四種偏誤。強模型只是比較準，不是比較沒偏見。<strong>跨家族</strong>比<strong>用更強的模型</strong>重要。</p>
   </div>
+
+  <h3>動手：挑出唯一合格的改寫</h3>
+  <p>先不要自己寫，<strong>先練「認出來」比較快</strong>。原始條目是「報告的語氣要親切」。下面三個改寫只有一個合格：</p>
+  <ol>
+    <li>報告的語氣要讓使用者感到被關心。</li>
+    <li>報告中沒有出現「嚴重」「病變」「異常」等醫療警示用語。</li>
+    <li>報告的親切度評分達到 8 分以上（滿分 10 分）。</li>
+  </ol>
+  <div class="box">
+    <p class="bl">答案：第 2 個</p>
+    <p><strong>1 不合格</strong> —— 「感到被關心」還是靠感覺，兩個人會判不一樣。它只是把模糊的詞換成另一個模糊的詞。</p>
+    <p><strong>3 不合格</strong> —— 出現了「滿分 10 分」。需要打分數就代表還沒拆解完，而且 8 分和 7 分的界線沒人說得出來。</p>
+    <p style="margin-bottom:0"><strong>2 合格</strong> —— 有明確的字詞清單、可以用搜尋確認、兩個人查會得到同樣結果，答案只有「有」或「沒有」。</p>
+  </div>
+  <p><em>這三個錯法就是你之後最常犯的三種：換一個模糊詞、改成打分數、漏掉可檢查的對象。</em>你自己的改寫留到 Lesson 3，那一課會給你四題檢查表當工具。</p>
 
   <button class="ckpt" data-ck="l2"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我說得出四種偏誤的名字，以及每一種對應的防禦手段。</span></span></button>
 </section>
@@ -694,7 +731,7 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
     <p style="margin-bottom:0"><strong>「寫越細越好。」</strong>不是。一條 rubric 有 5–7 個條目通常剛好。超過 10 條，裁判的一致性會開始下降，而且你自己也維護不動。</p>
   </div>
 
-  <button class="ckpt" data-ck="l3"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有一份 5 列的改寫表格。</span></span></button>
+  <button class="ckpt" data-ck="l3"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">必做那 3 列都填完了，每列都勾過四題、也寫了改寫後的版本。</span></span></button>
 </section>
 
 <hr>
@@ -806,14 +843,17 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
   </div>
   <p>這件事本身就是一課：<em>二手摘要會夾帶。</em>你剛學的「證據約束審查」原則 —— 只根據眼前的原文做判斷、要求引證據 —— 第一個該用在你自己的閱讀上。</p>
 
-  <h3>動手：150 字自述</h3>
-  <p>三次掃描做完後，<strong>不看論文</strong>，用自己的話回答：RQGM 想解決什麼問題？它的解法是什麼？我打算從中拿走哪一個想法用在我的工作上？</p>
+  <h3>動手：三個一句話</h3>
+  <p>三次掃描做完後，<strong>不要寫段落</strong>。把下面三句各補完一句話就好，每句 30 字內。第 1、2 句寫不出來，代表第一次掃描沒掃到位 —— 回去重看 abstract 和圖說，20 分鐘就好。</p>
   <div class="ws">
-    <div class="ws-h"><span class="wt">作業 L4 · 自述摘要</span><span class="wn" id="l4-count">0 字</span></div>
-    <textarea id="l4-sum" rows="6" placeholder="不看論文，用自己的話寫。寫不出來就再掃一次第一次掃描。"></textarea>
+    <div class="ws-h"><span class="wt">作業 L4 · 三個一句話</span><span class="wn" id="sv-l4a">—</span></div>
+    <div class="fld"><label>1 · RQGM 想解決的問題是</label><input type="text" id="l4a-p" placeholder="30 字內"></div>
+    <div class="fld"><label>2 · 它的解法是</label><input type="text" id="l4a-s" placeholder="30 字內"></div>
+    <div class="fld" style="margin-bottom:0"><label>3 · 我要拿走用在自己工作上的一個想法是</label><input type="text" id="l4a-t" placeholder="想不到就用：把 spec 驗收條件改成二元的，並固定用非 Claude 的模型來判"></div>
   </div>
+  <p style="font-size:13.5px;color:var(--mute)">完整的 150 字摘要留到<strong>週末總結作業</strong>第 2 題。現在不用寫。</p>
 
-  <button class="ckpt" data-ck="l4"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有一段 150 字自述摘要，而且沒有照抄論文原句。</span></span></button>
+  <button class="ckpt" data-ck="l4"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">三句都有東西，而且沒有一句是照抄論文原文。</span></span></button>
 </section>
 
 <hr>
@@ -891,7 +931,7 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
   </div>
 
   <h4>把結果記進台帳，順便認識 κ</h4>
-  <p>打開你的 RQGM 控制台 → 台帳分頁，每一條決議加一筆案例，填你的判定和 AI 的判定，最有把握的幾條標成<strong>錨點</strong>。記完之後首頁的 <strong>κ</strong> 就會亮起來。</p>
+  <p>打開 <code>web/rqgm-console.html</code>（直接用瀏覽器開）→ 台帳分頁，每一條決議加一筆案例，填你的判定和 AI 的判定，最有把握的幾條標成<strong>錨點</strong>。記完之後首頁的 <strong>κ</strong> 就會亮起來。</p>
   <p>κ（唸「卡帕」）在算的，就是下面這張表：</p>
 
   <figure>
@@ -982,6 +1022,46 @@ CONSTRAINTS:
 
 <hr>
 
+<section id="s-wk" data-h="15">
+  <p class="eyebrow">週末</p>
+  <h2>總結作業</h2>
+  <p class="meta">40 分鐘 · 三題</p>
+
+  <p class="lede">這是這週唯一需要「自己寫一段」的地方。前面每一課刻意做成勾選、選擇、填空，理由是那些地方的目的是讓你往下走，不是讓你卡住。到了這裡你已經有素材了，寫起來會比週一那時候容易得多。</p>
+
+  <h3>第 1 題 · 解釋給別人聽（10 分鐘）</h3>
+  <p>用你自己的話，向一個沒學過這些的同事解釋：<strong>為什麼「只看結果」的評估會系統性高估 Agent 的能力？</strong></p>
+  <p>規則：<strong>要舉一個你自己工作裡的例子</strong>，不要用課程裡的膚況報告。YCM、YCO、RD handoff 都可以。</p>
+  <div class="ws">
+    <div class="ws-h"><span class="wt">週末 · 第 1 題</span><span class="wn" id="sv-wk1">—</span></div>
+    <textarea id="wk-q1" rows="5" placeholder="舉一個你自己審過的東西。它可能是怎麼「靠運氣過關」的？"></textarea>
+  </div>
+
+  <h3>第 2 題 · 150 字論文摘要（20 分鐘）</h3>
+  <p>不看論文，用自己的話寫 150 字以內：RQGM 想解決什麼問題？它的解法是什麼？我打算拿走哪一個想法？</p>
+  <p>你在 Lesson 4 已經寫過三個一句話版本了 —— <strong>把它們展開成段落就好，不要從零開始。</strong>然後檢查一件事：有沒有任何一句是論文原文的中文直譯？有的話重寫那一句。</p>
+  <div class="ws">
+    <div class="ws-h"><span class="wt">週末 · 第 2 題</span><span class="wn" id="l4-count">0 字</span></div>
+    <textarea id="l4-sum" rows="6" placeholder="把 Lesson 4 的三個一句話展開成段落。"></textarea>
+  </div>
+
+  <h3>第 3 題 · 你的第一條不確定（10 分鐘）</h3>
+  <p>寫下<strong>一件你這週學到、但還不太相信的事</strong>，以及你打算怎麼驗證它。</p>
+  <div class="box">
+    <p class="bl">範例</p>
+    <p style="margin-bottom:0">課程說跨家族判定比用更強的模型重要。我不確定差距有多大 —— Week 3 做成本路由的時候，我可以同時記兩種設定的 κ 來比。</p>
+  </div>
+  <div class="ws">
+    <div class="ws-h"><span class="wt">週末 · 第 3 題</span><span class="wn" id="sv-wk3">—</span></div>
+    <textarea id="wk-q3" rows="4" placeholder="我還不相信＿＿＿＿。我打算這樣驗證它：＿＿＿＿"></textarea>
+  </div>
+  <p><em>這一題最有價值。</em>它是你 Week 2 的第一個實驗題目，而且會讓你在後面三週保持「我在檢驗這套方法」而不是「我在照著做」的姿態 —— 那正是這整門課想教的東西。</p>
+
+  <button class="ckpt" data-ck="wk"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">三題都寫完了。Week 1 結束。</span></span></button>
+</section>
+
+<hr>
+
 <section id="s-quiz" data-h="15">
   <p class="eyebrow">本週自我檢核</p>
   <h2>十題</h2>
@@ -1058,7 +1138,7 @@ CONSTRAINTS:
 "use strict";
 
 const KEY="rqgm:w1:v2";
-let S={done:{},l0:[{},{},{}],l3:[{},{},{},{},{}],l4:"",quiz:{},bias:{},pred:{},cc:{}};
+let S={done:{},l0:[{},{},{}],l1:[{},{},{}],l3:[{},{},{},{},{}],l4:"",l4a:{},wk:{},quiz:{},bias:{},pred:{},cc:{}};
 let store=null,saveT=null;
 
 /* Persistence. window.storage only exists inside the Claude artifact runtime;
@@ -1174,15 +1254,31 @@ function bindCheckpoints(){
       if(S.done[k])toast("完成 "+k.toUpperCase());};
   });
 }
+/* single-field text bindings: L4's three one-liners and the weekend answers */
+function bindText(){
+  [["l4a-p","l4a","p"],["l4a-s","l4a","s"],["l4a-t","l4a","t"],
+   ["wk-q1","wk","q1"],["wk-q3","wk","q3"]].forEach(([id,bag,key])=>{
+    const el=document.getElementById(id);if(!el)return;
+    el.value=(S[bag]||{})[key]||"";
+    el.oninput=()=>{S[bag]=S[bag]||{};S[bag][key]=el.value;save();
+      const n=document.getElementById(id.indexOf("l4a")===0?"sv-l4a":id==="wk-q1"?"sv-wk1":"sv-wk3");
+      if(n)n.textContent="已儲存";};
+  });
+  const l4=document.getElementById("l4-sum"),c=document.getElementById("l4-count");
+  if(l4){
+    l4.value=S.l4||"";if(c)c.textContent=(S.l4||"").length+" 字";
+    l4.oninput=()=>{S.l4=l4.value;if(c)c.textContent=l4.value.length+" 字";save();};
+  }
+}
 function esc(s){return(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
 function buildL0(){
   const wrap=document.getElementById("l0-blocks");wrap.innerHTML="";
-  for(let i=0;i<3;i++){
+  for(let i=0;i<2;i++){
     const d=S.l0[i]||{};
     const el=document.createElement("div");el.className="case-blk";
     el.innerHTML=
-      '<div class="fld"><label>案例 '+(i+1)+'</label><input type="text" data-l0="'+i+'.c" value="'+esc(d.c)+'" placeholder="例如 TBD-MV-03 的決議"></div>'+
+      '<div class="fld"><label>你的案例 '+(i+1)+'（範例是案例 1，所以這是第 '+(i+2)+' 個）</label><input type="text" data-l0="'+i+'.c" value="'+esc(d.c)+'" placeholder="例如 TBD-MV-03 的決議"></div>'+
       '<div class="fld"><label>我的判斷</label><span class="seg"><button data-l0v="'+i+'.accept">接受</button><button data-l0v="'+i+'.reject">拒絕</button></span></div>'+
       '<div class="fld"><label>為什麼 · 第一層</label><textarea rows="2" data-l0="'+i+'.w1">'+esc(d.w1)+'</textarea></div>'+
       '<div class="fld" style="margin-bottom:0"><label>為什麼 · 第二層（換一個人審，他會判一樣嗎？沒說出口的是什麼？）</label><textarea rows="3" data-l0="'+i+'.w2">'+esc(d.w2)+'</textarea></div>';
@@ -1199,21 +1295,87 @@ function buildL0(){
       b.classList.add("on");save();};
   });
 }
+function l3miss(i){
+  const k=(S.l3[i]||{}).k||[];
+  const failed=[0,1,2,3].filter(j=>!k[j]);
+  const el=document.getElementById("miss-"+i);
+  if(!el)return;
+  const any=[0,1,2,3].some(j=>k[j]);
+  el.className="miss"+(failed.length?"":" ok");
+  el.textContent=!any?"逐題勾上面四格"
+    :failed.length?"沒過第 "+failed.map(j=>j+1).join("、")+" 題"
+    :"四題全過，不用改寫";
+}
 function buildL3(){
   const wrap=document.getElementById("l3-rows");wrap.innerHTML="";
   for(let i=0;i<5;i++){
-    const d=S.l3[i]||{};
-    const el=document.createElement("div");el.className="rowgrid";
+    const d=S.l3[i]||{},req=i<3;
+    const el=document.createElement("div");el.className="l3row";
     el.innerHTML=
-      '<div><span class="rh-m">TBD ID</span><input type="text" data-l3="'+i+'.id" value="'+esc(d.id)+'" placeholder="TBD-__-__"></div>'+
-      '<div><span class="rh-m">原始決議</span><textarea rows="2" data-l3="'+i+'.o">'+esc(d.o)+'</textarea></div>'+
-      '<div><span class="rh-m">改寫後</span><textarea rows="2" data-l3="'+i+'.r">'+esc(d.r)+'</textarea></div>'+
-      '<div><span class="rh-m">沒過第幾題</span><input type="text" data-l3="'+i+'.f" value="'+esc(d.f)+'" placeholder="2,4"></div>';
+      '<div class="l3h"><span class="rowtag'+(req?" req":"")+'">'+(req?"必做 "+(i+1):"選做")+'</span>'+
+        '<span class="k4" data-k4="'+i+'"></span><span class="miss" id="miss-'+i+'"></span></div>'+
+      '<div class="rowgrid">'+
+        '<div><span class="rh-m">TBD ID</span><input type="text" data-l3="'+i+'.id" value="'+esc(d.id)+'" placeholder="TBD-__-__"></div>'+
+        '<div><span class="rh-m">原始決議（照抄，不要順稿）</span><textarea rows="2" data-l3="'+i+'.o">'+esc(d.o)+'</textarea></div>'+
+        '<div><span class="rh-m">改寫後</span><textarea rows="2" data-l3="'+i+'.r">'+esc(d.r)+'</textarea></div>'+
+      '</div>';
     wrap.appendChild(el);
+    const k4=el.querySelector("[data-k4]");
+    ["1","2","3","4"].forEach((lab,j)=>{
+      const b=document.createElement("button");
+      b.textContent=lab;b.title=CC[j];
+      if(((S.l3[i]||{}).k||[])[j])b.classList.add("on");
+      b.onclick=()=>{
+        S.l3[i]=S.l3[i]||{};S.l3[i].k=S.l3[i].k||[];
+        S.l3[i].k[j]=!S.l3[i].k[j];
+        b.classList.toggle("on",!!S.l3[i].k[j]);
+        l3miss(i);save();
+      };
+      k4.appendChild(b);
+    });
+    l3miss(i);
   }
   wrap.querySelectorAll("[data-l3]").forEach(inp=>{
     inp.oninput=()=>{const p=inp.dataset.l3.split(".");S.l3[+p[0]]=S.l3[+p[0]]||{};S.l3[+p[0]][p[1]]=inp.value;save();};
   });
+}
+function buildL1(){
+  const wrap=document.getElementById("l1-rows");wrap.innerHTML="";
+  const LABELS=[()=>"範例 · TBD-MV-03 的決議",
+                ()=>(S.l0[0]||{}).c||"你的案例 1",
+                ()=>(S.l0[1]||{}).c||"你的案例 2"];
+  for(let i=0;i<3;i++){
+    const d=S.l1[i]||{};
+    const el=document.createElement("div");el.className="pickrow";
+    el.innerHTML='<span class="pl">'+esc(LABELS[i]())+'</span>'+
+      '<span class="seg" data-l1a="'+i+'"><button data-v="outcome">結果</button><button data-v="process">過程</button></span>'+
+      '<span class="pl" style="flex:0 0 auto"><em>改看另一邊，判斷</em></span>'+
+      '<span class="seg" data-l1b="'+i+'"><button data-v="yes">會變</button><button data-v="no">不會變</button></span>';
+    wrap.appendChild(el);
+    [["l1a","look"],["l1b","chg"]].forEach(([attr,key])=>{
+      const seg=el.querySelector("[data-"+attr+"]");
+      seg.querySelectorAll("button").forEach(b=>{
+        if(d[key]===b.dataset.v)b.classList.add("on");
+        b.onclick=()=>{
+          S.l1[i]=S.l1[i]||{};S.l1[i][key]=b.dataset.v;
+          seg.querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+          b.classList.add("on");l1out();save();
+          const n=document.getElementById("sv-l1");if(n)n.textContent="已儲存";
+        };
+      });
+    });
+  }
+  l1out();
+}
+function l1out(){
+  const el=document.getElementById("l1-out");if(!el)return;
+  const done=S.l1.filter(d=>d&&d.look&&d.chg).length;
+  const risky=S.l1.filter(d=>d&&d.look==="outcome"&&d.chg==="yes").length;
+  el.className="cc-out"+(done===3?(risky?" fail":" pass"):"");
+  if(done<3){el.textContent="三個案例各勾兩下（已完成 "+done+" / 3）。";return;}
+  if(!risky){el.innerHTML="<strong>三個都是「不會變」。</strong>合理 —— 代表你審的東西本來就是結果導向的。";return;}
+  el.innerHTML="<strong>有 "+risky+" 條是「看結果」且「會變」。</strong>那幾條就是你未來最會出事的地方："+
+    "你當時的依據禁不起「它是怎麼做到的」這個追問。<strong>Lesson 3 挑改寫題目時優先挑它們。</strong>";
 }
 const CC=["有一個明確的觸發時機（什麼時候要檢查這件事）",
  "要觀察的東西，能在 10 秒內用眼睛或一個指令確認",
@@ -1358,15 +1520,27 @@ function bindCopy(){
 }
 function exportMd(){
   let m="# Week 1 作業 · "+new Date().toISOString().slice(0,10)+"\n\n";
-  m+="## Lesson 0 · 三個案例\n\n";
+  m+="## Lesson 0 · 我補的 2 個案例\n\n";
   S.l0.forEach((d,i)=>{if(!d||!d.c)return;
-    m+="### 案例 "+(i+1)+"："+(d.c||"")+"\n- 判斷："+(d.v==="accept"?"接受":d.v==="reject"?"拒絕":"—")+
+    m+="### 我的案例 "+(i+1)+"："+(d.c||"")+"\n- 判斷："+(d.v==="accept"?"接受":d.v==="reject"?"拒絕":"—")+
        "\n- 為什麼 v1："+(d.w1||"")+"\n- 為什麼 v2："+(d.w2||"")+"\n\n";});
-  m+="## Lesson 3 · 五條改寫\n\n| TBD ID | 原始決議 | 改寫後 | 沒過第幾關 |\n|---|---|---|---|\n";
-  S.l3.forEach(d=>{if(!d||!d.id)return;
-    m+="| "+(d.id||"")+" | "+(d.o||"").replace(/\n/g," ")+" | "+(d.r||"").replace(/\n/g," ")+" | "+(d.f||"")+" |\n";});
-  m+="\n## Lesson 4 · 自述摘要\n\n"+(S.l4||"（未填）")+"\n\n";
+  const LK=["結果","過程"],CH={yes:"會變",no:"不會變"};
+  m+="## Lesson 1 · 結果 vs 過程\n\n| 案例 | 我當時看的 | 改看另一邊 |\n|---|---|---|\n";
+  S.l1.forEach((d,i)=>{d=d||{};
+    const nm=i===0?"範例 TBD-MV-03":((S.l0[i-1]||{}).c||"案例 "+i);
+    m+="| "+nm+" | "+(d.look==="outcome"?LK[0]:d.look==="process"?LK[1]:"—")+" | "+(CH[d.chg]||"—")+" |\n";});
+  m+="\n## Lesson 3 · 改寫表格\n\n| TBD ID | 原始決議 | 改寫後 | 四題結果 |\n|---|---|---|---|\n";
+  S.l3.forEach((d,i)=>{if(!d||!d.id)return;
+    const k=d.k||[],r=[0,1,2,3].map(j=>(j+1)+(k[j]?"✓":"✗")).join(" ");
+    m+="| "+(d.id||"")+(i<3?"":" *(選做)*")+" | "+(d.o||"").replace(/\n/g," ")+" | "+(d.r||"").replace(/\n/g," ")+" | "+r+" |\n";});
+  const l4a=S.l4a||{};
+  m+="\n## Lesson 4 · 三個一句話\n\n1. 想解決的問題："+(l4a.p||"（未填）")+
+     "\n2. 它的解法："+(l4a.s||"（未填）")+"\n3. 我要拿走的想法："+(l4a.t||"（未填）")+"\n\n";
   if(S.pred.a!==undefined&&S.pred.a!=="")m+="## Lesson 5 · 預測對照\n\n預測 FAIL 數："+S.pred.a+"　實際："+(S.pred.b||"—")+"\n\n";
+  const w=S.wk||{};
+  m+="## 週末總結作業\n\n### 第 1 題 · 解釋給別人聽\n\n"+(w.q1||"（未填）")+
+     "\n\n### 第 2 題 · 150 字摘要\n\n"+(S.l4||"（未填）")+
+     "\n\n### 第 3 題 · 我的第一條不確定\n\n"+(w.q3||"（未填）")+"\n\n";
   const ks=Object.keys(S.quiz);
   if(ks.length)m+="## 自我檢核\n\n答對 "+ks.filter(k=>S.quiz[k]).length+" / 10\n\n";
   m+="\n<!--RQGM-STATE "+JSON.stringify(S)+" RQGM-STATE-->\n";
@@ -1382,10 +1556,8 @@ function importMd(file){
     const m=String(r.result).match(/<!--RQGM-STATE ([\s\S]*?) RQGM-STATE-->/);
     if(!m){toast("這個檔案裡沒有可還原的紀錄");return;}
     try{
-      S=Object.assign({done:{},l0:[{},{},{}],l3:[{},{},{},{},{}],l4:"",quiz:{},bias:{},pred:{},cc:{}},JSON.parse(m[1]));
-      buildL0();buildL3();buildCC();buildBias();buildQuiz();buildPred();bindCheckpoints();refreshProgress();
-      const l4=document.getElementById("l4-sum");l4.value=S.l4||"";
-      document.getElementById("l4-count").textContent=(S.l4||"").length+" 字";
+      S=Object.assign({done:{},l0:[{},{},{}],l1:[{},{},{}],l3:[{},{},{},{},{}],l4:"",l4a:{},wk:{},quiz:{},bias:{},pred:{},cc:{}},JSON.parse(m[1]));
+      buildL0();buildL1();buildL3();buildCC();buildBias();buildQuiz();buildPred();bindCheckpoints();refreshProgress();bindText();
       save();toast("已還原先前的作業");
     }catch(e){toast("還原失敗，檔案可能已損毀");}
   };
@@ -1393,11 +1565,8 @@ function importMd(file){
 }
 (async function(){
   await load();
-  buildRail();buildL0();buildL3();buildCC();buildBias();buildQuiz();buildPred();
+  buildRail();buildL0();buildL1();buildL3();buildCC();buildBias();buildQuiz();buildPred();bindText();
   bindCheckpoints();bindCopy();refreshProgress();spy();
-  const l4=document.getElementById("l4-sum"),c=document.getElementById("l4-count");
-  l4.value=S.l4||"";c.textContent=(S.l4||"").length+" 字";
-  l4.oninput=()=>{S.l4=l4.value;c.textContent=l4.value.length+" 字";save();};
   document.getElementById("exp1").onclick=exportMd;
   document.getElementById("exp2").onclick=exportMd;
   const f=document.getElementById("impfile");
