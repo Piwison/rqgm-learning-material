@@ -1059,24 +1059,41 @@ CONSTRAINTS:
 
 const KEY="rqgm:w1:v2";
 let S={done:{},l0:[{},{},{}],l3:[{},{},{},{},{}],l4:"",quiz:{},bias:{},pred:{},cc:{}};
-let hasStore=false,saveT=null;
+let store=null,saveT=null;
+
+/* Persistence. window.storage only exists inside the Claude artifact runtime;
+   opening this file in a browser has to fall back to localStorage, or every
+   answer typed here is lost on refresh. Export/import stays as the backstop. */
+function pickStore(){
+  if(window.storage&&window.storage.get){
+    return {kind:"artifact",
+      get:()=>window.storage.get(KEY).then(r=>r&&r.value),
+      set:v=>window.storage.set(KEY,v)};
+  }
+  try{
+    localStorage.setItem(KEY+":probe","1");
+    localStorage.removeItem(KEY+":probe");
+    return {kind:"local",
+      get:async()=>localStorage.getItem(KEY),
+      set:async v=>localStorage.setItem(KEY,v)};
+  }catch(e){return null;}
+}
 
 async function load(){
+  store=pickStore();
   try{
-    if(window.storage&&window.storage.get){
-      hasStore=true;
-      const r=await window.storage.get(KEY);
-      if(r&&r.value)S=Object.assign(S,JSON.parse(r.value));
-    }
+    if(store){const raw=await store.get();if(raw)S=Object.assign(S,JSON.parse(raw));}
   }catch(e){}
   const el=document.getElementById("savestate");
-  el.className="savestate "+(hasStore?"ok":"no");
-  el.textContent=hasStore?"● 自動儲存已啟用":"● 自動儲存無法使用 — 請用匯出保存";
+  el.className="savestate "+(store?"ok":"no");
+  el.textContent=!store?"● 自動儲存無法使用 — 請用匯出保存"
+    :store.kind==="local"?"● 自動儲存已啟用 — 存在這台瀏覽器"
+    :"● 自動儲存已啟用";
 }
 function save(){
-  if(!hasStore)return;
+  if(!store)return;
   clearTimeout(saveT);
-  saveT=setTimeout(()=>{try{window.storage.set(KEY,JSON.stringify(S));
+  saveT=setTimeout(()=>{try{store.set(JSON.stringify(S));
     ["sv-l0","sv-l3"].forEach(i=>{const e=document.getElementById(i);if(e)e.textContent="已儲存";});
   }catch(e){}},400);
 }
