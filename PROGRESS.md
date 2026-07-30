@@ -52,17 +52,27 @@ lessons are evenly sized.
 
 ---
 
-## Weeks 2–4 (not started)
+## Weeks 2–4 (written, not started)
 
-**Week 2** — Rubric v1 (5–7 binary criteria, JSON), 20–30 eval cases with ~10 anchors,
-`npm run eval` end to end, κ printed. *Gate: κ ≥ 0.6.*
+Material: `docs/20-week2-course.md` · `docs/30-week3-course.md` · `docs/40-week4-course.md`
 
-**Week 3** — Judge calibration, cost/token logging, cheap→strong routing,
-`/dashboard` with pass rate over time + epoch markers, `cost_report` measured on my
-own data.
+**Week 2 — ~13 hrs.** 20–30 eval cases (~15 core / ~10 edge) with ~10 anchors, rubric v1
+as JSON (5–7 binary criteria), `npm run eval` end to end printing anchor κ, then the work
+of getting κ over the line. *Gate: κ ≥ 0.6.* Notion sync is the one optional lesson.
 
-**Week 4** — One real epoch transition (v1 → v2) gated on anchor κ, selective erasure
-via `stale=true`, adversarial relabeling, package as `.claude/skills/eval-loop/`.
+**Week 3 — ~11.5 hrs.** A canary case that fails loudly when the judge goes soft,
+cost/token reconciliation against the provider's own usage page, cheap→strong routing
+triggered by "exactly one criterion failed", `cost_report` measured on my own data, and
+`/dashboard` with pass rate over time and epoch markers. Trajectory flags are optional.
+
+**Week 4 — ~13 hrs.** Rubric v2, adversarial anchors added *before* v2 is scored, one real
+epoch transition gated on anchor κ with selective erasure via `stale=true`, the eval-loop
+skill made real, Notion write-back (comment-only), and a six-point anti-pattern audit.
+
+**Honest total: ~54 hrs, not the ~40 originally planned.** Week 1 alone went from 11.5 to
+15 once the deploy was counted. Every week marks lessons **必做 / 選做** so the gates are
+reachable in roughly 40 hrs by dropping the optional ones (Week 2 Notion sync, Week 3
+trajectory flags).
 
 ---
 

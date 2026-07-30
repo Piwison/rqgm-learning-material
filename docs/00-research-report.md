@@ -1,7 +1,10 @@
 # RQGM → a 4-week plan I can actually execute
 
-Verified research notes + the reduction of the paper to something one person can build
-in ~40 hours.
+Verified research notes + the reduction of the paper to something one person can build.
+
+**On the budget:** the reduction was scoped to ~40 hours. Written out honestly, with setup
+and deploy counted, the four weeks come to **~54 hours** — see §3. The optional lessons in
+each week are marked 選做 precisely so the gates remain reachable inside ~40.
 
 **Source:** *The Red Queen Gödel Machine: Co-Evolving Agents and Their Evaluators*,
 arXiv 2606.26294v1, 24 June 2026. University of Cambridge Machine Learning Systems Lab
@@ -103,7 +106,12 @@ outputs as "should be rejected" cases.
 
 ---
 
-## 3. Week-by-week (~40–50 hrs)
+## 3. Week-by-week (~54 hrs as actually written)
+
+The per-week budgets below are the original plan. The material in `docs/` carries the
+revised ones, which are larger: the original numbers left out setup and deploy time while
+still listing deployed artifacts as deliverables. Each week now marks lessons 必做 / 選做,
+so the gates stay reachable in ~40 hrs by dropping the optional lessons.
 
 ### Week 1 — Foundations + first eval agent + skeleton (~15 hrs)
 
@@ -120,7 +128,7 @@ Next.js + Supabase skeleton.
 **Gate:** deployed URL with empty states; `schema.sql` read and understood; ≥ 8 real TBD
 resolutions scored; you agree with at least one "fail."
 
-### Week 2 — Rubrics, harness, anchor set (11–12 hrs)
+### Week 2 — Rubrics, harness, anchor set (~13 hrs; see `docs/20-week2-course.md`)
 
 Lessons: golden-dataset construction — **20–30 cases (~15 core / ~10 edge)** is the right
 starting size (2h) · Cohen's κ and Spearman ρ (2h) · rubric versioning, conjunctive
@@ -136,7 +144,7 @@ about as anchors.
 "Substantial", 0.81–1.00 = "Almost Perfect", 0.41–0.60 = "Moderate". If below, fix criteria
 wording — never the labels.
 
-### Week 3 — Calibration, cost, routing, dashboard (11–12 hrs)
+### Week 3 — Calibration, cost, routing, dashboard (~11.5 hrs; see `docs/30-week3-course.md`)
 
 Lessons: bias mitigation in practice (2h) · cost/token tracking and routing (1.5h) ·
 trajectory evaluation (1.5h) · dashboard build (2h).
@@ -149,7 +157,7 @@ reduction via cascades. These are upper bounds on *their* distributions — meas
 **Gate:** live `/dashboard` with pass-rate-over-time, cost, epoch markers; `cost_report`
 showing measured savings on your own data; you can explain each routing decision.
 
-### Week 4 — Minimum Viable RQGM (11–12 hrs)
+### Week 4 — Minimum Viable RQGM (~13 hrs; see `docs/40-week4-course.md`)
 
 Lessons: lightweight epoch transitions (2h) · Claude Agent Skills — `SKILL.md` format,
 progressive disclosure, skills vs subagents (1.5h) · Notion write-back (1.5h) · anti-pattern

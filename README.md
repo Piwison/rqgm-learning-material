@@ -5,7 +5,8 @@ built while taking it.
 
 The framing comes from the Red Queen Gödel Machine paper
 ([arXiv 2606.26294](https://arxiv.org/abs/2606.26294), Cambridge MLSys + NVIDIA, June 2026),
-reduced to something one non-engineer can actually build in ~40 hours.
+reduced to something one non-engineer can actually build — about 54 hours across four
+weeks, once the setup and deploy work is honestly counted.
 
 > A scoring standard that never changes will eventually be gamed by whatever it scores.
 > So the standard must evolve too — but with discipline, or you lose your basis for
@@ -20,6 +21,9 @@ reduced to something one non-engineer can actually build in ~40 hours.
 | Know where the project stands | [`PROGRESS.md`](PROGRESS.md) |
 | Take Week 1 (interactive) | [`web/week1-course.html`](web/week1-course.html) — open in a browser |
 | Take Week 1 (plain text) | [`docs/10-week1-course.md`](docs/10-week1-course.md) |
+| Take Week 2 — rubrics, anchors, the κ ≥ 0.6 gate | [`docs/20-week2-course.md`](docs/20-week2-course.md) |
+| Take Week 3 — bias controls, cost routing, dashboard | [`docs/30-week3-course.md`](docs/30-week3-course.md) |
+| Take Week 4 — the epoch transition and the skill | [`docs/40-week4-course.md`](docs/40-week4-course.md) |
 | Understand the whole plan | [`docs/00-research-report.md`](docs/00-research-report.md) |
 | Track progress + run the calculators | [`web/rqgm-console.html`](web/rqgm-console.html) — open in a browser |
 
