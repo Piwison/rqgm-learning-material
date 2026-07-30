@@ -227,6 +227,22 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
 }
 @media(min-width:901px){.rh-m{display:none}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* pick-one rows (L1) and the four-test ticks per L3 row */
+.pickrow{border-top:1px solid var(--line);padding:13px 0;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.pickrow .pl{font-size:13px;color:var(--ink);flex:1 1 190px;min-width:0}
+.pickrow .pl em{color:var(--dim);font-style:normal}
+.k4{display:flex;gap:5px;flex-wrap:wrap}
+.k4 button{background:none;border:1px solid var(--line2);color:var(--dim);
+  font-family:'IBM Plex Mono',monospace;font-size:11px;padding:3px 8px;cursor:pointer}
+.k4 button.on{background:var(--verd);border-color:var(--verd);color:#fff}
+.rowtag{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;
+  text-transform:uppercase;padding:2px 6px;border:1px solid var(--line2);color:var(--dim)}
+.rowtag.req{border-color:var(--queen-l);color:var(--queen);background:var(--queen-w)}
+.l3row{border-top:1px solid var(--line);padding-top:14px;margin-top:14px}
+.l3row .l3h{display:flex;gap:9px;align-items:center;margin-bottom:9px}
+.miss{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--queen)}
+.miss.ok{color:var(--verd)}
 </style>
 </head>
 <body>
@@ -235,7 +251,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   <div class="rail-head">
     <p class="kicker">Week 1 · Course</p>
     <h1>AI Agent<br>評估的地基</h1>
-    <p class="sub">6 課 · 11.5 小時</p>
+    <p class="sub">6 課 15 小時 + 週末總結 40 分</p>
   </div>
   <div class="jump">
     <button onclick="document.getElementById('s-gloss').scrollIntoView()">術語表</button>
@@ -340,17 +356,17 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
 
   <p class="lede">在讀任何東西之前，先產出素材。這 30 分鐘的產出會被後面每一課用到，也會變成你 Week 2 的<span class="gl" title="一小批你親手確認過答案、之後不再更動的案例">錨點</span>集。</p>
 
-  <h3>動手</h3>
-  <p>回想過去兩週，寫下 <strong>3 個你做過的「接受 / 拒絕」判斷</strong>。可以是一條 YCM 的 TBD 決議、一個 YCO 原型、或一份 RD 的 handoff 實作。</p>
+  <h3>先看一個寫好的</h3>
+  <p><strong>案例 1 已經幫你填好了</strong>（下面那個範例框），當格式參考。你只要再補 <strong>2 個</strong>。</p>
 
   <div class="box a">
-    <p class="bl">關鍵動作：把「為什麼」再逼問一層</p>
-    <p>寫完第一層理由後，對每一個問自己：<strong>如果換一個人來審，他會做出跟我一樣的判斷嗎？</strong></p>
-    <p style="margin-bottom:0">如果答案是「不一定」，代表你的理由裡有隱含的東西沒說出口。把它挖出來 —— 那就是你 rubric 缺的那一條。</p>
+    <p class="bl">第二層卡住的話，用這句話開頭</p>
+    <p>「如果換一個人來審，他可能會判不一樣，因為我其實還要求了＿＿＿＿。」</p>
+    <p style="margin-bottom:0">把空格填掉就是第二層。填不出來也沒關係 —— 那代表這一條你的標準本來就很清楚，第二層寫「同一個判準，任何人看都會一樣」就可以往下走。</p>
   </div>
 
   <div class="box">
-    <p class="bl">範例</p>
+    <p class="bl">案例 1 · 範例（已填好，不用動）</p>
     <p style="margin-bottom:6px"><strong>案例</strong>　TBD-MV-03 的決議</p>
     <p style="margin-bottom:6px"><strong>判斷</strong>　拒絕</p>
     <p style="margin-bottom:6px"><strong>為什麼 v1</strong>　它寫「播放體驗要流暢」，但沒有人能驗證什麼叫流暢。</p>
@@ -358,15 +374,15 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   </div>
 
   <div class="ws" id="ws-l0">
-    <div class="ws-h"><span class="wt">作業 L0 · 你的三個案例</span><span class="wn" id="sv-l0">—</span></div>
+    <div class="ws-h"><span class="wt">作業 L0 · 再補 2 個</span><span class="wn" id="sv-l0">—</span></div>
     <div id="l0-blocks"></div>
   </div>
 
   <h3>這一課在做什麼</h3>
   <p>你剛剛做的事情有個名字：<strong>把隱性判斷顯性化</strong>。你腦中有一把尺，但那把尺目前只存在你腦中 —— 所以它無法被重複、無法交給機器、無法在你休假時繼續運作。</p>
-  <p>接下來六週要做的所有事，本質上都是同一件：<em>把你腦中那把尺搬出來，變成一個有版本、可被檢驗、也可能被推翻的東西。</em></p>
+  <p>接下來四週要做的所有事，本質上都是同一件：<em>把你腦中那把尺搬出來，變成一個有版本、可被檢驗、也可能被推翻的東西。</em></p>
 
-  <button class="ckpt" data-ck="l0"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有 3 個案例，每個都有兩層「為什麼」。</span></span></button>
+  <button class="ckpt" data-ck="l0"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">範例 1 + 我自己的 2 個 = 3 個案例，每個都有兩層「為什麼」。</span></span></button>
 </section>
 
 <hr>
@@ -374,7 +390,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
 <section id="s-l1" data-h="0.5">
   <p class="eyebrow">Lesson 1</p>
   <h2>評估的兩種看法</h2>
-  <p class="meta">2 小時 · 概念 + 動手</p>
+  <p class="meta">1 小時 · 概念 + 動手</p>
 
   <p class="lede">看結果，還是看過程？這是評估設計裡第一個、也是最常被搞混的分岔。</p>
 
@@ -467,8 +483,14 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
   </table>
   <p>你 Week 1 的第一隻 Agent 會是<strong>純結果評估</strong>，因為它最簡單。過程評估留到 Week 3。</p>
 
-  <h3>動手：套用到你的案例</h3>
-  <p>回到 Lesson 0 那三個案例。對每一個問：我當時是在看<strong>結果</strong>還是<strong>過程</strong>？如果只看另一邊，我的判斷會改變嗎？</p>
+  <h3>動手：三個案例各勾兩下</h3>
+  <p>回到 Lesson 0 那三個案例，每一個只做兩個動作，<strong>不用寫理由</strong>。判斷方式：如果你當時只看到最終產物就下判斷了，那是<strong>結果</strong>；如果你去追它中間怎麼來的，那是<strong>過程</strong>。大部分 spec review 是結果。</p>
+
+  <div class="ws">
+    <div class="ws-h"><span class="wt">作業 L1 · 各勾兩下</span><span class="wn" id="sv-l1">—</span></div>
+    <div id="l1-rows"></div>
+    <div class="cc-out" id="l1-out"></div>
+  </div>
 
   <div class="box a">
     <p class="bl">兩個常見誤解</p>
@@ -476,15 +498,15 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
     <p style="margin-bottom:0"><strong>「看結果 = 看最終輸出的字面內容。」</strong>不完全是。「結果」指的是<strong>任務有沒有達成</strong>。對編程 Agent 來說，結果是「測試有沒有過」，不是「程式碼看起來漂不漂亮」。</p>
   </div>
 
-  <button class="ckpt" data-ck="l1"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我能用自己的話，向沒學過的人解釋「為什麼只看結果會高估 Agent 能力」。</span></span></button>
+  <button class="ckpt" data-ck="l1"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">三個案例都勾完了，而且我填得出這句：「只看結果會高估能力，因為它可能靠＿＿達成正確結果。」</span></span></button>
 </section>
 
 <hr>
 
-<section id="s-l2" data-h="2.5">
+<section id="s-l2" data-h="1.5">
   <p class="eyebrow">Lesson 2</p>
   <h2>LLM 當裁判：它會怎麼騙你</h2>
-  <p class="meta">2 小時 · 概念 + 自我測驗</p>
+  <p class="meta">1.5 小時 · 概念 + 自我測驗</p>
 
   <p class="lede">你不可能每次都親自看 200 份報告。所以做法是：寫一份<span class="gl" title="一張檢查清單，列出什麼才算做對">rubric（評分準則）</span>，讓另一個 LLM 照著它幫你打分。這叫 LLM-as-a-Judge。</p>
 
@@ -493,7 +515,7 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
     <p style="margin-bottom:0">就是一張<strong>檢查清單</strong>，列出「什麼才算做對」。跟你 spec 裡的驗收條件是同一種東西 —— 只是寫成讓機器也能照著跑的形式。Lesson 3 會完整處理怎麼寫，這一課你只要知道「裁判是照著一張清單在打分」就夠。</p>
   </div>
 
-  <p>好消息是它真的有用。2023 年的一項經典研究（Zheng et al., MT-Bench）發現，強模型當裁判時，與人類判斷的一致率超過 80% —— 這個數字大約等同於<strong>兩個人類之間</strong>的一致率。換句話說：一個好的 LLM 裁判，跟你找另一個同事來審，準確度差不多。</p>
+  <p>好消息是它真的有用。2023 年的一項經典研究發現（Zheng et al.，提出了 <span class="gl" title="一個讓人類和 GPT-4 同時評分模型回答、再比對兩者是否一致的基準測試">MT-Bench</span>），強模型當裁判時，與人類判斷的一致率超過 80% —— 這個數字大約等同於<strong>兩個人類之間</strong>的一致率。換句話說：一個好的 LLM 裁判，跟你找另一個同事來審，準確度差不多。</p>
   <p>壞消息是它有四種<em>系統性</em>偏誤。不是偶爾出錯，是穩定地往同一個方向歪。</p>
 
   <h3>四種偏誤</h3>
@@ -571,12 +593,27 @@ input[type=number]{background:var(--paper);border:1px solid var(--line2);padding
     <p style="margin-bottom:0"><strong>「用最強的模型當裁判就好了。」</strong>最強的模型一樣有這四種偏誤。強模型只是比較準，不是比較沒偏見。<strong>跨家族</strong>比<strong>用更強的模型</strong>重要。</p>
   </div>
 
+  <h3>動手：挑出唯一合格的改寫</h3>
+  <p>先不要自己寫，<strong>先練「認出來」比較快</strong>。原始條目是「報告的語氣要親切」。下面三個改寫只有一個合格：</p>
+  <ol>
+    <li>報告的語氣要讓使用者感到被關心。</li>
+    <li>報告中沒有出現「嚴重」「病變」「異常」等醫療警示用語。</li>
+    <li>報告的親切度評分達到 8 分以上（滿分 10 分）。</li>
+  </ol>
+  <div class="box">
+    <p class="bl">答案：第 2 個</p>
+    <p><strong>1 不合格</strong> —— 「感到被關心」還是靠感覺，兩個人會判不一樣。它只是把模糊的詞換成另一個模糊的詞。</p>
+    <p><strong>3 不合格</strong> —— 出現了「滿分 10 分」。需要打分數就代表還沒拆解完，而且 8 分和 7 分的界線沒人說得出來。</p>
+    <p style="margin-bottom:0"><strong>2 合格</strong> —— 有明確的字詞清單、可以用搜尋確認、兩個人查會得到同樣結果，答案只有「有」或「沒有」。</p>
+  </div>
+  <p><em>這三個錯法就是你之後最常犯的三種：換一個模糊詞、改成打分數、漏掉可檢查的對象。</em>你自己的改寫留到 Lesson 3，那一課會給你四題檢查表當工具。</p>
+
   <button class="ckpt" data-ck="l2"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我說得出四種偏誤的名字，以及每一種對應的防禦手段。</span></span></button>
 </section>
 
 <hr>
 
-<section id="s-l3" data-h="4.5">
+<section id="s-l3" data-h="3">
   <p class="eyebrow">Lesson 3</p>
   <h2>從 spec 到 rubric：你早就會了</h2>
   <p class="meta">1.5 小時 · 動手為主</p>
@@ -694,17 +731,23 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
     <p style="margin-bottom:0"><strong>「寫越細越好。」</strong>不是。一條 rubric 有 5–7 個條目通常剛好。超過 10 條，裁判的一致性會開始下降，而且你自己也維護不動。</p>
   </div>
 
-  <button class="ckpt" data-ck="l3"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有一份 5 列的改寫表格。</span></span></button>
+  <button class="ckpt" data-ck="l3"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">必做那 3 列都填完了，每列都勾過四題、也寫了改寫後的版本。</span></span></button>
 </section>
 
 <hr>
 
-<section id="s-l4" data-h="6">
+<section id="s-l4" data-h="4.5">
   <p class="eyebrow">Lesson 4</p>
   <h2>論文閱讀協議</h2>
   <p class="meta">1.5 小時 · 現在才能打開論文</p>
 
   <p class="lede"><strong>現在，而且只有現在，你可以打開那篇論文了。</strong><br><a href="https://arxiv.org/abs/2606.26294" target="_blank" rel="noreferrer">arxiv.org/abs/2606.26294</a></p>
+
+  <div class="box a">
+    <p class="bl">連結打不開的話 — 不要因為這個卡住整週</p>
+    <p>arXiv 偶爾會擋自動連線，網址也可能改版。這個 repo 裡有 <code>docs/00-research-report.md</code>，那是從論文原文整理、已核對過的筆記。它的 <strong>§1（事實核對）</strong>和<strong>§2（概念階梯）</strong>涵蓋了下面「第一次掃描」要你拿到的全部東西。</p>
+    <p style="margin-bottom:0">用那份筆記完成這一課和週末第 2 題，然後記一句「我還沒讀原文」，等連結能開再補第三次掃描。<strong>但如果連結能開，就讀原文</strong> —— 二手筆記會夾帶，這一課下面就會證明給你看。</p>
+  </div>
 
   <p>因為你現在有了三樣東西，是四天前沒有的：你自己的判斷素材（L0）、結果 vs 過程的分辨能力（L1）、對裁判偏誤的認識（L2）。論文裡有一半的內容，是在解決你<strong>已經知道存在</strong>的問題。</p>
 
@@ -806,31 +849,47 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
   </div>
   <p>這件事本身就是一課：<em>二手摘要會夾帶。</em>你剛學的「證據約束審查」原則 —— 只根據眼前的原文做判斷、要求引證據 —— 第一個該用在你自己的閱讀上。</p>
 
-  <h3>動手：150 字自述</h3>
-  <p>三次掃描做完後，<strong>不看論文</strong>，用自己的話回答：RQGM 想解決什麼問題？它的解法是什麼？我打算從中拿走哪一個想法用在我的工作上？</p>
+  <h3>動手：三個一句話</h3>
+  <p>三次掃描做完後，<strong>不要寫段落</strong>。把下面三句各補完一句話就好，每句 30 字內。第 1、2 句寫不出來，代表第一次掃描沒掃到位 —— 回去重看 abstract 和圖說，20 分鐘就好。</p>
   <div class="ws">
-    <div class="ws-h"><span class="wt">作業 L4 · 自述摘要</span><span class="wn" id="l4-count">0 字</span></div>
-    <textarea id="l4-sum" rows="6" placeholder="不看論文，用自己的話寫。寫不出來就再掃一次第一次掃描。"></textarea>
+    <div class="ws-h"><span class="wt">作業 L4 · 三個一句話</span><span class="wn" id="sv-l4a">—</span></div>
+    <div class="fld"><label>1 · RQGM 想解決的問題是</label><input type="text" id="l4a-p" placeholder="30 字內"></div>
+    <div class="fld"><label>2 · 它的解法是</label><input type="text" id="l4a-s" placeholder="30 字內"></div>
+    <div class="fld" style="margin-bottom:0"><label>3 · 我要拿走用在自己工作上的一個想法是</label><input type="text" id="l4a-t" placeholder="想不到就用：把 spec 驗收條件改成二元的，並固定用非 Claude 的模型來判"></div>
   </div>
+  <p style="font-size:13.5px;color:var(--mute)">完整的 150 字摘要留到<strong>週末總結作業</strong>第 2 題。現在不用寫。</p>
 
-  <button class="ckpt" data-ck="l4"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有一段 150 字自述摘要，而且沒有照抄論文原句。</span></span></button>
+  <button class="ckpt" data-ck="l4"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">三句都有東西，而且沒有一句是照抄論文原文。</span></span></button>
 </section>
 
 <hr>
 
-<section id="s-l5" data-h="7.5">
+<section id="s-l5" data-h="6">
   <p class="eyebrow">Lesson 5</p>
-  <h2>環境設置 + 第一隻 Agent</h2>
-  <p class="meta">4 小時 · 純動手</p>
+  <h2>環境設置 + 第一隻 Agent + 部署骨架</h2>
+  <p class="meta">9 小時 · 純動手 · 佔整週六成</p>
 
   <h3>Part A · 環境（1 小時）</h3>
+  <p>三件事。<strong>第 3 件最容易被跳過，但少了它 Part B 完全跑不起來。</strong></p>
   <ol>
     <li><strong>Supabase</strong>（放資料的地方）— 到 supabase.com，恢復其中一個暫停的專案（或開新的，選 ap-southeast 區）。Settings → API 拿 <code>Project URL</code> 和 <code>anon public key</code>，貼到記事本備用。</li>
     <li><strong>Vercel</strong>（<span class="gl" title="把網頁放到網路上，讓別人用網址就能打開">部署</span>用）— 確認你能登入。這步先不用建專案。</li>
-    <li><strong>Notion Integration Token</strong> — 到 notion.so/my-integrations 建一個 internal integration，拿 token。<strong>然後回到你的 <code>[PF] Tasks Database</code> 頁面，右上 ⋯ → Connections → 加入這個 integration。</strong></li>
+    <li><strong>Judge 的 API key</strong> — 到 <strong>platform.openai.com → API keys</strong> 建一把新的。需要綁信用卡。</li>
   </ol>
   <div class="box a">
-    <p style="margin-bottom:0">第 3 步的後半段很多人漏掉。<strong>漏了 API 會回 404</strong>，而且錯誤訊息不會告訴你是這個原因 —— 它只會說「找不到」。</p>
+    <p class="bl">為什麼不能用 Claude 當 judge</p>
+    <p>因為規則一：判定的模型必須跟生成的模型不同家族。你整週都在用 Claude Code 寫東西，判定端如果也是 Claude，它會系統性地給自己高分 —— 就是你在 L2 學到的自我偏好偏誤。</p>
+    <p><strong>會花多少錢：</strong>這週只判 8–12 條短文字，<strong>總花費在 1 美元以下</strong>，通常是幾美分。</p>
+    <p style="margin-bottom:0">拿到 key 後，把 repo 根目錄的 <code>.env.example</code> 複製成 <code>.env</code>，填 <code>JUDGE_API_KEY</code>。<code>JUDGE_MODEL</code> 填你在 OpenAI 頁面看到的<strong>當前</strong>模型代號 —— 不要照抄任何教材裡寫死的名稱，那些過期得比這門課還快。想用 Gemini（aistudio.google.com，有免費額度）也可以。</p>
+  </div>
+  <div class="box">
+    <p class="bl">Notion 呢？這週不用設</p>
+    <p style="margin-bottom:0">Notion 同步是 <strong>Week 2</strong> 的內容，Week 1 的產出完全不碰它。現在去設 integration，你的 Tasks 頁面這週還是會空的，只是白花 15 分鐘。等需要的那一課會告訴你怎麼做。</p>
+  </div>
+  <div class="box a">
+    <p class="bl">還有一件沒人會告訴你的事</p>
+    <p>Part B 和 Part C 都需要你的電腦上有 <span class="gl" title="讓 JavaScript / TypeScript 能在你電腦上執行的執行環境">Node.js</span>。你可能已經有了。</p>
+    <p style="margin-bottom:0"><strong>不用先去裝</strong> —— 直接往下做，缺的話 Claude Code 會告訴你並要求你同意安裝。看到它要跑 <code>npm install</code> 之類的東西，<strong>同意就對了</strong>，那是正常流程。先講清楚是為了讓你看到那個畫面時不會停下來懷疑自己踩到陷阱。</p>
   </div>
 
   <h3>Part B · 第一隻 Agent：Spec-Resolution Judge（3 小時）</h3>
@@ -848,7 +907,7 @@ THEN 報告中每一個推薦產品，都對應到這兩項其中之一</pre>
   <p style="font-size:13.5px;color:var(--mute)">這個動作叫「預測 - 對照」。只有在你的預測被打臉的時候，你才會真的記住 —— 這是這一課最重要的機制，不要跳過。</p>
 
   <h4>執行</h4>
-  <p>打開 <span class="gl" title="Anthropic 的命令列版 Claude，可以直接讀寫你電腦上的檔案">Claude Code</span>，開一個<strong>新的 session</strong>（不要跟你在改 YCM codebase 的那個混在一起），把下面整段貼進去，然後把 L3 表格的內容也貼給它。</p>
+  <p>打開 <span class="gl" title="Anthropic 的命令列版 Claude，可以直接讀寫你電腦上的檔案">Claude Code</span>，開一個<strong>新的 session</strong>（不要跟你在改 YCM codebase 的那個混在一起），把下面整段貼進去，然後把 L3 表格的內容也貼給它。（<code>web/rqgm-console.html</code> 的「工具包」分頁有同一段，附複製按鈕，用哪邊都一樣。）</p>
   <div class="codewrap">
     <div class="codebar"><span>Claude Code prompt · spec-judge</span><button class="cbtn" data-copy="prompt-sj">複製</button></div>
     <pre id="prompt-sj">GOAL: Build a small evaluation agent called "spec-judge" that grades whether my
@@ -891,7 +950,19 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
   </div>
 
   <h4>把結果記進台帳，順便認識 κ</h4>
-  <p>打開你的 RQGM 控制台 → 台帳分頁，每一條決議加一筆案例，填你的判定和 AI 的判定，最有把握的幾條標成<strong>錨點</strong>。記完之後首頁的 <strong>κ</strong> 就會亮起來。</p>
+  <p>打開 <code>web/rqgm-console.html</code>（直接用瀏覽器開）→ 台帳分頁，每一條決議加一筆案例，填你的判定和 AI 的判定，最有把握的幾條標成<strong>錨點</strong>。記完之後首頁的 <strong>κ</strong> 就會亮起來。</p>
+
+  <div class="box a">
+    <p class="bl">先講清楚：這週的 κ 幾乎一定很難看</p>
+    <p>只有 8–12 筆、而且判定大多集中在同一邊的時候，κ 本來就會怪。你可能會看到：</p>
+    <table>
+      <tr><th>你看到</th><th>意思</th></tr>
+      <tr><td><strong>0 或接近 0</strong></td><td>不是「完全不一致」。是「你們的一致程度跟隨便猜差不多」</td></tr>
+      <tr><td><strong>負數</strong></td><td>也正常。比隨便猜還差 —— 8 筆樣本下很容易發生</td></tr>
+      <tr><td><strong>空白 / 算不出來</strong></td><td>你的判定全在同一邊（例如 8 筆全 PASS）。κ 需要兩邊都有東西</td></tr>
+    </table>
+    <p style="margin-bottom:0">這三種都<strong>不代表 judge 壞掉，也不代表你做錯</strong>。它們代表樣本太少。κ 要到 20–30 筆才有意義，那是 Week 2 的事。<strong>這週只要看到那個數字出現、知道它從哪來就夠了。</strong></p>
+  </div>
   <p>κ（唸「卡帕」）在算的，就是下面這張表：</p>
 
   <figure>
@@ -927,12 +998,118 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
     <figcaption><span class="fignum">圖 5</span><b>κ 就是在問「你們兩把尺對得上嗎」。</b>Week 2 的關卡是 κ ≥ 0.6。這週只要看到它出現就好，還不用管數字是多少。</figcaption>
   </figure>
 
-  <button class="ckpt" data-ck="l5"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有 spec-judge-report.md，台帳裡有 ≥ 8 筆案例，首頁 κ 有數字。</span></span></button>
+  <h3>Part C · 把骨架部署起來（5 小時）</h3>
+
+  <div class="box a">
+    <p class="bl">先回答一個問題：這個專案放在哪裡</p>
+    <p><strong>放在這個 repo 裡面，開一個 <code>worktracker/</code> 資料夾。</strong>不要另開新的 GitHub repo。</p>
+    <pre>rqgm-learning-material/
+├── docs/            ← 教材
+├── web/             ← 學習工具
+├── supabase/        ← schema.sql
+└── worktracker/     ← ★ Part C 要建的 Next.js 專案放這裡</pre>
+    <p><strong>為什麼要講：</strong>Next.js 的教學文件通常假設你的專案就是 repo 根目錄，而你的不是。這會影響一個 Vercel 設定，不知道的話你會卡在「部署成功但打開是 404」。</p>
+    <p style="margin-bottom:0"><strong>那個設定：</strong>Vercel 建專案時（或之後到 <strong>Settings → General</strong>）把 <strong>Root Directory</strong> 設成 <code>worktracker</code>。只有這一個地方要改。漏掉的症狀很好認：build 成功但網址是 404 或空白。</p>
+  </div>
+  <p>這一段沒有新概念，純粹是把地基蓋好。Week 3 的儀表板要長在這個骨架上，早點蓋完，後面每一週都省事。要做的只有三頁，而且<strong>都不寫業務邏輯，只做讀取</strong>。</p>
+
+  <table>
+    <thead><tr><th>頁面</th><th>內容</th><th>空資料時</th></tr></thead>
+    <tbody>
+      <tr><td><code>/</code></td><td><code>tasks</code> 表的清單</td><td>顯示空狀態，不是錯誤</td></tr>
+      <tr><td><code>/runs</code></td><td><code>agent_runs</code> 表的清單</td><td>顯示空狀態，不是錯誤</td></tr>
+      <tr><td>部署</td><td>Vercel 上有一個可以打開的網址</td><td>—</td></tr>
+    </tbody>
+  </table>
+
+  <div class="box a">
+    <p class="bl">先套用 schema，而且不要重做一份</p>
+    <p style="margin-bottom:0"><code>supabase/schema.sql</code> <strong>已經寫好了</strong> —— 五張表加一個 <code>v_current_runs</code> view。到 Supabase → SQL Editor 把那份檔案整份貼進去執行就好。<strong>不要讓 AI 幫你重新產生一份</strong>：現有這份已經包含 <code>stale</code>（選擇性擦除）和 <code>is_anchor</code>（錨點）這些你 Week 4 才會用到、但現在漏掉就得整個重做的欄位。</p>
+  </div>
+
+  <h4>執行</h4>
+  <div class="codewrap">
+    <div class="codebar"><span>Claude Code prompt · worktracker 骨架</span><button class="cbtn" data-copy="prompt-sk">複製</button></div>
+    <pre id="prompt-sk">GOAL: Create a Next.js 15 App Router + TypeScript project in a NEW `worktracker/`
+subdirectory of this existing repo. Do not create a separate repo, and do not move
+or touch docs/, web/, supabase/ or .claude/.
+Use the Supabase JS client. I will paste SUPABASE_URL and SUPABASE_ANON_KEY into
+.env.local. I drive Claude Code and review code — keep it simple and readable.
+
+IMPORTANT: The database schema already exists at `supabase/schema.sql` (5 tables +
+a v_current_runs view) and I have already applied it. Do NOT write a new schema.
+Read that file and match your queries to the columns that are actually there.
+
+WHAT TO BUILD:
+1. A `/` page listing rows from `tasks` (id, title, status, priority, source,
+   updated_at). If the table is empty, show an empty state — not an error.
+2. A `/runs` page listing rows from `agent_runs` (id, agent_name, verdict, score,
+   model_used, tokens_in, tokens_out, cost_usd, created_at).
+3. Deploy to Vercel.
+
+CONSTRAINTS:
+- No application logic beyond CRUD reads. No auth. No styling framework.
+- Before you start, restate in ONE line how you will VERIFY each of the 3 items.
+  Then implement. After each item, run it and show me the result.</pre>
+  </div>
+
+  <div class="box a">
+    <p class="bl">為什麼這裡要花 5 小時</p>
+    <p>因為第一次串 Supabase 的環境變數、和第一次上 Vercel，幾乎一定會卡一次。<strong>卡住是正常的，不是你笨。</strong>這 5 小時裡大概有 1.5 小時是在踩坑，那是預算的一部分。三個坑，連「去哪裡修」一起給你：</p>
+    <ol style="margin-bottom:0">
+      <li><strong>變數名稱前綴。</strong><code>worktracker/.env.local</code> 裡要讓瀏覽器端讀到的變數，名稱必須以 <code>NEXT_PUBLIC_</code> 開頭。<em>症狀：</em>本機跑起來但頁面顯示 undefined。</li>
+      <li><strong>Vercel 要再設一次環境變數。</strong>本機的 <code>.env.local</code> 不會跟著上去（它被 gitignore 了，這是對的）。<em>去哪裡設：</em>Vercel → 專案 → <strong>Settings → Environment Variables</strong>，加完之後<strong>要重新 deploy 一次</strong> —— 改環境變數不會自動觸發部署，這是最常見的第二次卡住。</li>
+      <li><strong>Root Directory。</strong><em>去哪裡設：</em>Vercel → 專案 → <strong>Settings → General → Root Directory</strong> → 填 <code>worktracker</code>。</li>
+    </ol>
+    <p style="margin-top:11px;margin-bottom:0">如果 Claude Code 用 CLI 幫你部署，它第一次會需要你在瀏覽器完成 <code>vercel login</code> —— 那個跳窗是正常的。</p>
+  </div>
+
+  <button class="ckpt" data-ck="l5"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">我有 spec-judge-report.md，台帳裡有 ≥ 8 筆案例，首頁 κ 有數字，而且 Vercel 上有一個打得開的網址，/ 和 /runs 都顯示空狀態而不是報錯。</span></span></button>
 </section>
 
 <hr>
 
-<section id="s-quiz" data-h="11.5">
+<section id="s-wk" data-h="15">
+  <p class="eyebrow">週末</p>
+  <h2>總結作業</h2>
+  <p class="meta">40 分鐘 · 三題</p>
+
+  <p class="lede">這是這週唯一需要「自己寫一段」的地方。前面每一課刻意做成勾選、選擇、填空，理由是那些地方的目的是讓你往下走，不是讓你卡住。到了這裡你已經有素材了，寫起來會比週一那時候容易得多。</p>
+
+  <h3>第 1 題 · 解釋給別人聽（10 分鐘）</h3>
+  <p>用你自己的話，向一個沒學過這些的同事解釋：<strong>為什麼「只看結果」的評估會系統性高估 Agent 的能力？</strong></p>
+  <p>規則：<strong>要舉一個你自己工作裡的例子</strong>，不要用課程裡的膚況報告。YCM、YCO、RD handoff 都可以。</p>
+  <div class="ws">
+    <div class="ws-h"><span class="wt">週末 · 第 1 題</span><span class="wn" id="sv-wk1">—</span></div>
+    <textarea id="wk-q1" rows="5" placeholder="舉一個你自己審過的東西。它可能是怎麼「靠運氣過關」的？"></textarea>
+  </div>
+
+  <h3>第 2 題 · 150 字論文摘要（20 分鐘）</h3>
+  <p>不看論文，用自己的話寫 150 字以內：RQGM 想解決什麼問題？它的解法是什麼？我打算拿走哪一個想法？</p>
+  <p>你在 Lesson 4 已經寫過三個一句話版本了 —— <strong>把它們展開成段落就好，不要從零開始。</strong>然後檢查一件事：有沒有任何一句是論文原文的中文直譯？有的話重寫那一句。</p>
+  <div class="ws">
+    <div class="ws-h"><span class="wt">週末 · 第 2 題</span><span class="wn" id="l4-count">0 字</span></div>
+    <textarea id="l4-sum" rows="6" placeholder="把 Lesson 4 的三個一句話展開成段落。"></textarea>
+  </div>
+
+  <h3>第 3 題 · 你的第一條不確定（10 分鐘）</h3>
+  <p>寫下<strong>一件你這週學到、但還不太相信的事</strong>，以及你打算怎麼驗證它。</p>
+  <div class="box">
+    <p class="bl">範例</p>
+    <p style="margin-bottom:0">課程說跨家族判定比用更強的模型重要。我不確定差距有多大 —— Week 3 做成本路由的時候，我可以同時記兩種設定的 κ 來比。</p>
+  </div>
+  <div class="ws">
+    <div class="ws-h"><span class="wt">週末 · 第 3 題</span><span class="wn" id="sv-wk3">—</span></div>
+    <textarea id="wk-q3" rows="4" placeholder="我還不相信＿＿＿＿。我打算這樣驗證它：＿＿＿＿"></textarea>
+  </div>
+  <p><em>這一題最有價值。</em>它是你 Week 2 的第一個實驗題目，而且會讓你在後面三週保持「我在檢驗這套方法」而不是「我在照著做」的姿態 —— 那正是這整門課想教的東西。</p>
+
+  <button class="ckpt" data-ck="wk"><span class="bx">✓</span><span class="cw"><span class="cl">檢核點</span><span class="ct">三題都寫完了。Week 1 結束。</span></span></button>
+</section>
+
+<hr>
+
+<section id="s-quiz" data-h="15">
   <p class="eyebrow">本週自我檢核</p>
   <h2>十題</h2>
   <p class="meta">先答，再按「顯示答案」· 不要回頭翻</p>
@@ -946,7 +1123,7 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
 
 <hr>
 
-<section id="s-five" data-h="11.5">
+<section id="s-five" data-h="15">
   <p class="eyebrow">收尾</p>
   <h2>你這週結束時<br>應該能說出的五句話</h2>
   <p class="meta">不看筆記，講得出來</p>
@@ -1008,25 +1185,42 @@ ACCEPTANCE CRITERIA (my rubric for YOUR work):
 "use strict";
 
 const KEY="rqgm:w1:v2";
-let S={done:{},l0:[{},{},{}],l3:[{},{},{},{},{}],l4:"",quiz:{},bias:{},pred:{},cc:{}};
-let hasStore=false,saveT=null;
+let S={done:{},l0:[{},{},{}],l1:[{},{},{}],l3:[{},{},{},{},{}],l4:"",l4a:{},wk:{},quiz:{},bias:{},pred:{},cc:{}};
+let store=null,saveT=null;
+
+/* Persistence. window.storage only exists inside the Claude artifact runtime;
+   opening this file in a browser has to fall back to localStorage, or every
+   answer typed here is lost on refresh. Export/import stays as the backstop. */
+function pickStore(){
+  if(window.storage&&window.storage.get){
+    return {kind:"artifact",
+      get:()=>window.storage.get(KEY).then(r=>r&&r.value),
+      set:v=>window.storage.set(KEY,v)};
+  }
+  try{
+    localStorage.setItem(KEY+":probe","1");
+    localStorage.removeItem(KEY+":probe");
+    return {kind:"local",
+      get:async()=>localStorage.getItem(KEY),
+      set:async v=>localStorage.setItem(KEY,v)};
+  }catch(e){return null;}
+}
 
 async function load(){
+  store=pickStore();
   try{
-    if(window.storage&&window.storage.get){
-      hasStore=true;
-      const r=await window.storage.get(KEY);
-      if(r&&r.value)S=Object.assign(S,JSON.parse(r.value));
-    }
+    if(store){const raw=await store.get();if(raw)S=Object.assign(S,JSON.parse(raw));}
   }catch(e){}
   const el=document.getElementById("savestate");
-  el.className="savestate "+(hasStore?"ok":"no");
-  el.textContent=hasStore?"● 自動儲存已啟用":"● 自動儲存無法使用 — 請用匯出保存";
+  el.className="savestate "+(store?"ok":"no");
+  el.textContent=!store?"● 自動儲存無法使用 — 請用匯出保存"
+    :store.kind==="local"?"● 自動儲存已啟用 — 存在這台瀏覽器"
+    :"● 自動儲存已啟用";
 }
 function save(){
-  if(!hasStore)return;
+  if(!store)return;
   clearTimeout(saveT);
-  saveT=setTimeout(()=>{try{window.storage.set(KEY,JSON.stringify(S));
+  saveT=setTimeout(()=>{try{store.set(JSON.stringify(S));
     ["sv-l0","sv-l3"].forEach(i=>{const e=document.getElementById(i);if(e)e.textContent="已儲存";});
   }catch(e){}},400);
 }
@@ -1034,18 +1228,18 @@ function toast(m){const t=document.getElementById("toast");t.textContent=m;t.cla
 
 const LESSONS=[
   {id:"s-l0",n:"L0",t:"採集你的判斷",a:0,b:0.5},
-  {id:"s-l1",n:"L1",t:"結果 vs 過程",a:0.5,b:2.5},
-  {id:"s-l2",n:"L2",t:"裁判的四種偏誤",a:2.5,b:4.5},
-  {id:"s-l3",n:"L3",t:"從 spec 到 rubric",a:4.5,b:6},
-  {id:"s-l4",n:"L4",t:"論文閱讀協議",a:6,b:7.5},
-  {id:"s-l5",n:"L5",t:"環境 + 第一隻 Agent",a:7.5,b:11.5}
+  {id:"s-l1",n:"L1",t:"結果 vs 過程",a:0.5,b:1.5},
+  {id:"s-l2",n:"L2",t:"裁判的四種偏誤",a:1.5,b:3},
+  {id:"s-l3",n:"L3",t:"從 spec 到 rubric",a:3,b:4.5},
+  {id:"s-l4",n:"L4",t:"論文閱讀協議",a:4.5,b:6},
+  {id:"s-l5",n:"L5",t:"環境 + Agent + 部署",a:6,b:15}
 ];
-const TOTAL=11.5,SCALE_H=326;
+const TOTAL=15,SCALE_H=326;
 
 function buildRail(){
   const sc=document.getElementById("scale");
   sc.style.height=SCALE_H+"px";
-  for(let h=0;h<=11;h++){
+  for(let h=0;h<=15;h++){
     const y=(h/TOTAL)*SCALE_H,maj=h%2===0;
     const t=document.createElement("div");
     t.className="tick"+(maj?" major":"");t.style.top=y+"px";sc.appendChild(t);
@@ -1107,15 +1301,31 @@ function bindCheckpoints(){
       if(S.done[k])toast("完成 "+k.toUpperCase());};
   });
 }
+/* single-field text bindings: L4's three one-liners and the weekend answers */
+function bindText(){
+  [["l4a-p","l4a","p"],["l4a-s","l4a","s"],["l4a-t","l4a","t"],
+   ["wk-q1","wk","q1"],["wk-q3","wk","q3"]].forEach(([id,bag,key])=>{
+    const el=document.getElementById(id);if(!el)return;
+    el.value=(S[bag]||{})[key]||"";
+    el.oninput=()=>{S[bag]=S[bag]||{};S[bag][key]=el.value;save();
+      const n=document.getElementById(id.indexOf("l4a")===0?"sv-l4a":id==="wk-q1"?"sv-wk1":"sv-wk3");
+      if(n)n.textContent="已儲存";};
+  });
+  const l4=document.getElementById("l4-sum"),c=document.getElementById("l4-count");
+  if(l4){
+    l4.value=S.l4||"";if(c)c.textContent=(S.l4||"").length+" 字";
+    l4.oninput=()=>{S.l4=l4.value;if(c)c.textContent=l4.value.length+" 字";save();};
+  }
+}
 function esc(s){return(s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
 function buildL0(){
   const wrap=document.getElementById("l0-blocks");wrap.innerHTML="";
-  for(let i=0;i<3;i++){
+  for(let i=0;i<2;i++){
     const d=S.l0[i]||{};
     const el=document.createElement("div");el.className="case-blk";
     el.innerHTML=
-      '<div class="fld"><label>案例 '+(i+1)+'</label><input type="text" data-l0="'+i+'.c" value="'+esc(d.c)+'" placeholder="例如 TBD-MV-03 的決議"></div>'+
+      '<div class="fld"><label>你的案例 '+(i+1)+'（範例是案例 1，所以這是第 '+(i+2)+' 個）</label><input type="text" data-l0="'+i+'.c" value="'+esc(d.c)+'" placeholder="例如 TBD-MV-03 的決議"></div>'+
       '<div class="fld"><label>我的判斷</label><span class="seg"><button data-l0v="'+i+'.accept">接受</button><button data-l0v="'+i+'.reject">拒絕</button></span></div>'+
       '<div class="fld"><label>為什麼 · 第一層</label><textarea rows="2" data-l0="'+i+'.w1">'+esc(d.w1)+'</textarea></div>'+
       '<div class="fld" style="margin-bottom:0"><label>為什麼 · 第二層（換一個人審，他會判一樣嗎？沒說出口的是什麼？）</label><textarea rows="3" data-l0="'+i+'.w2">'+esc(d.w2)+'</textarea></div>';
@@ -1132,21 +1342,87 @@ function buildL0(){
       b.classList.add("on");save();};
   });
 }
+function l3miss(i){
+  const k=(S.l3[i]||{}).k||[];
+  const failed=[0,1,2,3].filter(j=>!k[j]);
+  const el=document.getElementById("miss-"+i);
+  if(!el)return;
+  const any=[0,1,2,3].some(j=>k[j]);
+  el.className="miss"+(failed.length?"":" ok");
+  el.textContent=!any?"逐題勾上面四格"
+    :failed.length?"沒過第 "+failed.map(j=>j+1).join("、")+" 題"
+    :"四題全過，不用改寫";
+}
 function buildL3(){
   const wrap=document.getElementById("l3-rows");wrap.innerHTML="";
   for(let i=0;i<5;i++){
-    const d=S.l3[i]||{};
-    const el=document.createElement("div");el.className="rowgrid";
+    const d=S.l3[i]||{},req=i<3;
+    const el=document.createElement("div");el.className="l3row";
     el.innerHTML=
-      '<div><span class="rh-m">TBD ID</span><input type="text" data-l3="'+i+'.id" value="'+esc(d.id)+'" placeholder="TBD-__-__"></div>'+
-      '<div><span class="rh-m">原始決議</span><textarea rows="2" data-l3="'+i+'.o">'+esc(d.o)+'</textarea></div>'+
-      '<div><span class="rh-m">改寫後</span><textarea rows="2" data-l3="'+i+'.r">'+esc(d.r)+'</textarea></div>'+
-      '<div><span class="rh-m">沒過第幾題</span><input type="text" data-l3="'+i+'.f" value="'+esc(d.f)+'" placeholder="2,4"></div>';
+      '<div class="l3h"><span class="rowtag'+(req?" req":"")+'">'+(req?"必做 "+(i+1):"選做")+'</span>'+
+        '<span class="k4" data-k4="'+i+'"></span><span class="miss" id="miss-'+i+'"></span></div>'+
+      '<div class="rowgrid">'+
+        '<div><span class="rh-m">TBD ID</span><input type="text" data-l3="'+i+'.id" value="'+esc(d.id)+'" placeholder="TBD-__-__"></div>'+
+        '<div><span class="rh-m">原始決議（照抄，不要順稿）</span><textarea rows="2" data-l3="'+i+'.o">'+esc(d.o)+'</textarea></div>'+
+        '<div><span class="rh-m">改寫後</span><textarea rows="2" data-l3="'+i+'.r">'+esc(d.r)+'</textarea></div>'+
+      '</div>';
     wrap.appendChild(el);
+    const k4=el.querySelector("[data-k4]");
+    ["1","2","3","4"].forEach((lab,j)=>{
+      const b=document.createElement("button");
+      b.textContent=lab;b.title=CC[j];
+      if(((S.l3[i]||{}).k||[])[j])b.classList.add("on");
+      b.onclick=()=>{
+        S.l3[i]=S.l3[i]||{};S.l3[i].k=S.l3[i].k||[];
+        S.l3[i].k[j]=!S.l3[i].k[j];
+        b.classList.toggle("on",!!S.l3[i].k[j]);
+        l3miss(i);save();
+      };
+      k4.appendChild(b);
+    });
+    l3miss(i);
   }
   wrap.querySelectorAll("[data-l3]").forEach(inp=>{
     inp.oninput=()=>{const p=inp.dataset.l3.split(".");S.l3[+p[0]]=S.l3[+p[0]]||{};S.l3[+p[0]][p[1]]=inp.value;save();};
   });
+}
+function buildL1(){
+  const wrap=document.getElementById("l1-rows");wrap.innerHTML="";
+  const LABELS=[()=>"範例 · TBD-MV-03 的決議",
+                ()=>(S.l0[0]||{}).c||"你的案例 1",
+                ()=>(S.l0[1]||{}).c||"你的案例 2"];
+  for(let i=0;i<3;i++){
+    const d=S.l1[i]||{};
+    const el=document.createElement("div");el.className="pickrow";
+    el.innerHTML='<span class="pl">'+esc(LABELS[i]())+'</span>'+
+      '<span class="seg" data-l1a="'+i+'"><button data-v="outcome">結果</button><button data-v="process">過程</button></span>'+
+      '<span class="pl" style="flex:0 0 auto"><em>改看另一邊，判斷</em></span>'+
+      '<span class="seg" data-l1b="'+i+'"><button data-v="yes">會變</button><button data-v="no">不會變</button></span>';
+    wrap.appendChild(el);
+    [["l1a","look"],["l1b","chg"]].forEach(([attr,key])=>{
+      const seg=el.querySelector("[data-"+attr+"]");
+      seg.querySelectorAll("button").forEach(b=>{
+        if(d[key]===b.dataset.v)b.classList.add("on");
+        b.onclick=()=>{
+          S.l1[i]=S.l1[i]||{};S.l1[i][key]=b.dataset.v;
+          seg.querySelectorAll("button").forEach(x=>x.classList.remove("on"));
+          b.classList.add("on");l1out();save();
+          const n=document.getElementById("sv-l1");if(n)n.textContent="已儲存";
+        };
+      });
+    });
+  }
+  l1out();
+}
+function l1out(){
+  const el=document.getElementById("l1-out");if(!el)return;
+  const done=S.l1.filter(d=>d&&d.look&&d.chg).length;
+  const risky=S.l1.filter(d=>d&&d.look==="outcome"&&d.chg==="yes").length;
+  el.className="cc-out"+(done===3?(risky?" fail":" pass"):"");
+  if(done<3){el.textContent="三個案例各勾兩下（已完成 "+done+" / 3）。";return;}
+  if(!risky){el.innerHTML="<strong>三個都是「不會變」。</strong>合理 —— 代表你審的東西本來就是結果導向的。";return;}
+  el.innerHTML="<strong>有 "+risky+" 條是「看結果」且「會變」。</strong>那幾條就是你未來最會出事的地方："+
+    "你當時的依據禁不起「它是怎麼做到的」這個追問。<strong>Lesson 3 挑改寫題目時優先挑它們。</strong>";
 }
 const CC=["有一個明確的觸發時機（什麼時候要檢查這件事）",
  "要觀察的東西，能在 10 秒內用眼睛或一個指令確認",
@@ -1291,15 +1567,27 @@ function bindCopy(){
 }
 function exportMd(){
   let m="# Week 1 作業 · "+new Date().toISOString().slice(0,10)+"\n\n";
-  m+="## Lesson 0 · 三個案例\n\n";
+  m+="## Lesson 0 · 我補的 2 個案例\n\n";
   S.l0.forEach((d,i)=>{if(!d||!d.c)return;
-    m+="### 案例 "+(i+1)+"："+(d.c||"")+"\n- 判斷："+(d.v==="accept"?"接受":d.v==="reject"?"拒絕":"—")+
+    m+="### 我的案例 "+(i+1)+"："+(d.c||"")+"\n- 判斷："+(d.v==="accept"?"接受":d.v==="reject"?"拒絕":"—")+
        "\n- 為什麼 v1："+(d.w1||"")+"\n- 為什麼 v2："+(d.w2||"")+"\n\n";});
-  m+="## Lesson 3 · 五條改寫\n\n| TBD ID | 原始決議 | 改寫後 | 沒過第幾關 |\n|---|---|---|---|\n";
-  S.l3.forEach(d=>{if(!d||!d.id)return;
-    m+="| "+(d.id||"")+" | "+(d.o||"").replace(/\n/g," ")+" | "+(d.r||"").replace(/\n/g," ")+" | "+(d.f||"")+" |\n";});
-  m+="\n## Lesson 4 · 自述摘要\n\n"+(S.l4||"（未填）")+"\n\n";
+  const LK=["結果","過程"],CH={yes:"會變",no:"不會變"};
+  m+="## Lesson 1 · 結果 vs 過程\n\n| 案例 | 我當時看的 | 改看另一邊 |\n|---|---|---|\n";
+  S.l1.forEach((d,i)=>{d=d||{};
+    const nm=i===0?"範例 TBD-MV-03":((S.l0[i-1]||{}).c||"案例 "+i);
+    m+="| "+nm+" | "+(d.look==="outcome"?LK[0]:d.look==="process"?LK[1]:"—")+" | "+(CH[d.chg]||"—")+" |\n";});
+  m+="\n## Lesson 3 · 改寫表格\n\n| TBD ID | 原始決議 | 改寫後 | 四題結果 |\n|---|---|---|---|\n";
+  S.l3.forEach((d,i)=>{if(!d||!d.id)return;
+    const k=d.k||[],r=[0,1,2,3].map(j=>(j+1)+(k[j]?"✓":"✗")).join(" ");
+    m+="| "+(d.id||"")+(i<3?"":" *(選做)*")+" | "+(d.o||"").replace(/\n/g," ")+" | "+(d.r||"").replace(/\n/g," ")+" | "+r+" |\n";});
+  const l4a=S.l4a||{};
+  m+="\n## Lesson 4 · 三個一句話\n\n1. 想解決的問題："+(l4a.p||"（未填）")+
+     "\n2. 它的解法："+(l4a.s||"（未填）")+"\n3. 我要拿走的想法："+(l4a.t||"（未填）")+"\n\n";
   if(S.pred.a!==undefined&&S.pred.a!=="")m+="## Lesson 5 · 預測對照\n\n預測 FAIL 數："+S.pred.a+"　實際："+(S.pred.b||"—")+"\n\n";
+  const w=S.wk||{};
+  m+="## 週末總結作業\n\n### 第 1 題 · 解釋給別人聽\n\n"+(w.q1||"（未填）")+
+     "\n\n### 第 2 題 · 150 字摘要\n\n"+(S.l4||"（未填）")+
+     "\n\n### 第 3 題 · 我的第一條不確定\n\n"+(w.q3||"（未填）")+"\n\n";
   const ks=Object.keys(S.quiz);
   if(ks.length)m+="## 自我檢核\n\n答對 "+ks.filter(k=>S.quiz[k]).length+" / 10\n\n";
   m+="\n<!--RQGM-STATE "+JSON.stringify(S)+" RQGM-STATE-->\n";
@@ -1315,10 +1603,8 @@ function importMd(file){
     const m=String(r.result).match(/<!--RQGM-STATE ([\s\S]*?) RQGM-STATE-->/);
     if(!m){toast("這個檔案裡沒有可還原的紀錄");return;}
     try{
-      S=Object.assign({done:{},l0:[{},{},{}],l3:[{},{},{},{},{}],l4:"",quiz:{},bias:{},pred:{},cc:{}},JSON.parse(m[1]));
-      buildL0();buildL3();buildCC();buildBias();buildQuiz();buildPred();bindCheckpoints();refreshProgress();
-      const l4=document.getElementById("l4-sum");l4.value=S.l4||"";
-      document.getElementById("l4-count").textContent=(S.l4||"").length+" 字";
+      S=Object.assign({done:{},l0:[{},{},{}],l1:[{},{},{}],l3:[{},{},{},{},{}],l4:"",l4a:{},wk:{},quiz:{},bias:{},pred:{},cc:{}},JSON.parse(m[1]));
+      buildL0();buildL1();buildL3();buildCC();buildBias();buildQuiz();buildPred();bindCheckpoints();refreshProgress();bindText();
       save();toast("已還原先前的作業");
     }catch(e){toast("還原失敗，檔案可能已損毀");}
   };
@@ -1326,11 +1612,8 @@ function importMd(file){
 }
 (async function(){
   await load();
-  buildRail();buildL0();buildL3();buildCC();buildBias();buildQuiz();buildPred();
+  buildRail();buildL0();buildL1();buildL3();buildCC();buildBias();buildQuiz();buildPred();bindText();
   bindCheckpoints();bindCopy();refreshProgress();spy();
-  const l4=document.getElementById("l4-sum"),c=document.getElementById("l4-count");
-  l4.value=S.l4||"";c.textContent=(S.l4||"").length+" 字";
-  l4.oninput=()=>{S.l4=l4.value;c.textContent=l4.value.length+" 字";save();};
   document.getElementById("exp1").onclick=exportMd;
   document.getElementById("exp2").onclick=exportMd;
   const f=document.getElementById("impfile");
