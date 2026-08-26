@@ -1,0 +1,8 @@
+node_modules/
+.next/
+.env
+.env.local
+.DS_Store
+
+# 執行結果留在本機。要進版控的是 cases/ 和 rubrics/，不是 runs/。
+eval/runs/*.jsonl

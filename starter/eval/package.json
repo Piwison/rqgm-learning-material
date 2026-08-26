@@ -1,0 +1,13 @@
+{
+  "name": "eval-harness",
+  "private": true,
+  "type": "module",
+  "description": "Thin rubric-based eval harness. Zero dependencies by design.",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "eval": "node src/run.ts",
+    "test": "node --test src/*.test.ts"
+  }
+}

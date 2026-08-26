@@ -1,0 +1,27 @@
+{
+  "name": "spec-resolution",
+  "version": 1,
+  "acceptance": "conjunctive",
+  "criteria": [
+    {
+      "id": "c1",
+      "text": "決議裡有一個明確的觸發時機（出現 WHEN / GIVEN / 「當…時」這類條件）",
+      "mock": { "fail_if_missing": "WHEN|GIVEN|當[^，。]{0,12}時" }
+    },
+    {
+      "id": "c2",
+      "text": "決議裡有一個可以在 10 秒內確認的具體標準（一個數字、閾值、或看得到的畫面條件）",
+      "mock": { "fail_if_missing": "\\d+\\s*(ms|秒|分鐘|筆|次|字|%)" }
+    },
+    {
+      "id": "c3",
+      "text": "沒有出現需要打分數的說法（例如「8 分以上」「品質達標」）",
+      "mock": { "fail_if_matches": "分以上|分\\s*\\(|品質達標|評分達" }
+    },
+    {
+      "id": "c4",
+      "text": "沒有使用無法驗證的形容詞（流暢、友善、直覺、優雅）",
+      "mock": { "fail_if_matches": "流暢|友善|直覺|優雅|順暢" }
+    }
+  ]
+}

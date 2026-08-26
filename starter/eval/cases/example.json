@@ -1,0 +1,76 @@
+[
+  {
+    "case_ref": "TBD-MV-01",
+    "input": "WHEN 使用者在 MV 播放中切換歌曲, THE 播放器 SHALL 在 300ms 內顯示新 MV 的首幀。",
+    "expected_verdict": "accept",
+    "is_anchor": true
+  },
+  {
+    "case_ref": "TBD-MV-03",
+    "input": "播放體驗要流暢。",
+    "expected_verdict": "reject",
+    "is_anchor": true
+  },
+  {
+    "case_ref": "TBD-YCO-02",
+    "input": "GIVEN 膚況偵測回傳「毛孔 0.7、泛紅 0.4」, WHEN Agent 生成報告, THEN 報告中每一個推薦產品都對應到這兩項其中之一。",
+    "expected_verdict": "accept",
+    "is_anchor": true,
+    "note": "沒有時間或數量單位，但十秒內用眼睛就能逐項核對，所以我判 accept。"
+  },
+  {
+    "case_ref": "TBD-YCO-05",
+    "input": "報告的親切度評分達到 8 分以上。",
+    "expected_verdict": "reject",
+    "is_anchor": true
+  },
+  {
+    "case_ref": "TBD-YCO-07",
+    "input": "當使用者上傳照片時，系統應在 5 秒內回傳偵測結果。",
+    "expected_verdict": "accept",
+    "is_anchor": true
+  },
+  {
+    "case_ref": "TBD-UX-01",
+    "input": "介面要直覺、操作要友善。",
+    "expected_verdict": "reject",
+    "is_anchor": true
+  },
+  {
+    "case_ref": "TBD-EXP-02",
+    "input": "WHEN 使用者匯出報告時, THE 系統 SHALL 產生一份 PDF，且檔名包含當日日期。",
+    "expected_verdict": "accept",
+    "is_anchor": true,
+    "note": "檔名看一眼就知道對不對，不需要數字。"
+  },
+  {
+    "case_ref": "TBD-LIST-01",
+    "input": "清單一次最多顯示 50 筆，捲到底自動載入下一頁。",
+    "expected_verdict": "accept",
+    "is_anchor": false
+  },
+  {
+    "case_ref": "TBD-ERR-01",
+    "input": "錯誤訊息要清楚說明原因。",
+    "expected_verdict": "reject",
+    "is_anchor": false
+  },
+  {
+    "case_ref": "TBD-API-04",
+    "input": "WHEN API 回傳 429, THE 前端 SHALL 顯示「稍後再試」並在 30 秒後自動重試一次。",
+    "expected_verdict": "accept",
+    "is_anchor": false
+  },
+  {
+    "case_ref": "TBD-PERF-01",
+    "input": "效能要優化到可接受範圍。",
+    "expected_verdict": "reject",
+    "is_anchor": false
+  },
+  {
+    "case_ref": "TBD-AUTH-01",
+    "input": "GIVEN 使用者未登入, WHEN 開啟 /dashboard, THEN 導向 /login。",
+    "expected_verdict": "accept",
+    "is_anchor": false
+  }
+]
